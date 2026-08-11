@@ -239,18 +239,14 @@ document.addEventListener('DOMContentLoaded', () => {
         coinCylinder.style.opacity = cylinderOpacity.toFixed(3);
       }
 
-      // On mobile, floating 3D coin fades out as Frame 3 settles so it hands over to the settled-pfp photo
-      if (isMobile && p > 0.58) {
-        const mobCoinFade = Math.max(0, 1 - (p - 0.58) * 5);
-        pfpStage.style.opacity = mobCoinFade.toFixed(3);
-      } else {
-        pfpStage.style.opacity = '1';
-      }
+      // Profile coin is always 100% visible
+      pfpStage.style.opacity = '1';
 
-      // Resume/CV button ONLY in Frame 3 (Desktop)
+      // Resume/CV button visible in Frame 3 on BOTH mobile and desktop
       const tagResume = document.getElementById('tagResume');
       if (tagResume) {
-        if (p < 0.62 || isMobile) {
+        const threshold = isMobile ? 0.45 : 0.62;
+        if (p < threshold) {
           tagResume.style.opacity = '0';
           tagResume.style.pointerEvents = 'none';
         } else {
