@@ -172,7 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (frame3Settled) {
       frame3Settled.style.opacity = f3Opacity.toFixed(3);
-      frame3Settled.style.transform = `translateX(-50%) translate3d(0, ${((1 - f3Opacity) * 30).toFixed(1)}px, 0)`;
+      if (isMobile) {
+        frame3Settled.style.transform = `translate(-50%, -50%) translate3d(0, ${((1 - f3Opacity) * 20).toFixed(1)}px, 0)`;
+      } else {
+        frame3Settled.style.transform = `translateX(-50%) translate3d(0, ${((1 - f3Opacity) * 30).toFixed(1)}px, 0)`;
+      }
       frame3Settled.style.pointerEvents = f3Opacity > 0.4 ? 'auto' : 'none';
     }
 
@@ -182,10 +186,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isMobile) {
         leftPct = 50;
         // In Frame 1 & 2 (p < 0.60), coin is centered (46% -> 48%)
-        // In Frame 3 (p >= 0.60), coin smoothly glides up to 11.5% near top header
+        // In Frame 3 (p >= 0.60), coin smoothly settles at 24% near top
         if (p > 0.60) {
           let t = (p - 0.60) / 0.40;
-          topPct = (1 - t) * 48 + t * 11.5; // 48% -> 11.5%
+          topPct = (1 - t) * 48 + t * 24; // 48% -> 24%
         } else {
           topPct = 46 + (p * 3.33); // 46% -> 48%
         }

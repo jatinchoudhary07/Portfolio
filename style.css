@@ -1494,17 +1494,17 @@ button {
   /* Frame 1 Bottom Card (Clean Screenshot 2 layout below coin) */
   .oryzo-blurry-card {
     position: absolute !important;
-    top: 58vh !important;
+    top: 60vh !important;
     bottom: auto !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     width: 90vw !important;
     max-width: 380px !important;
-    padding: 10px 16px !important;
+    padding: 12px 18px !important;
     align-items: center !important;
     text-align: center !important;
     gap: 6px !important;
-    background: rgba(10, 20, 34, 0.82) !important;
+    background: rgba(10, 20, 34, 0.85) !important;
     backdrop-filter: blur(18px) !important;
     border-radius: 16px !important;
     z-index: 20 !important;
@@ -1580,26 +1580,19 @@ button {
     margin-top: 10px !important;
   }
 
-  /* Frame 3 Settled Stage on Mobile */
+  /* Frame 3 Settled Stage on Mobile — Centered cleanly in viewport */
   .frame3-settled-stage {
     display: flex !important;
     flex-direction: column !important;
     position: absolute !important;
-    top: 74px !important; /* Positioned below 68px top navbar for 100% heading visibility */
+    top: 50% !important;
     left: 50% !important;
-    transform: translateX(-50%) !important;
+    transform: translate(-50%, -50%) !important;
     width: 92vw !important;
     max-width: 440px !important;
     z-index: 15 !important;
     gap: 4px !important;
-    max-height: 88vh !important;
-    overflow-y: auto !important;
-    scrollbar-width: none !important;
     padding-bottom: 4px !important;
-  }
-
-  .frame3-settled-stage::-webkit-scrollbar {
-    display: none !important;
   }
 
   .settled-header {
@@ -1630,7 +1623,7 @@ button {
     font-size: 0.88rem !important;
     font-weight: 800 !important;
     padding: 6px 20px !important;
-    bottom: -42px !important; /* 7px gap below coin rim */
+    bottom: -40px !important;
     z-index: 50 !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(232, 91, 100, 0.3) !important;
   }
@@ -1638,16 +1631,20 @@ button {
   .settled-grid-container {
     display: flex !important;
     flex-direction: column !important;
-    gap: 8px !important;
-    margin-top: 165px !important; /* Generous clearance buffer so coin NEVER touches card! */
+    gap: 6px !important;
+    margin-top: 125px !important; /* Reserved space for profile coin at top 24% */
     width: 100% !important;
   }
 
-  /* About Section Mobile Overflow & Tab Fix */
+  /* About & Projects Sections Mobile Rules */
   .about-section, .about-layout, .about-tab-col, .tab-nav, .tab-pane, .about-text-block {
     max-width: 100% !important;
-    overflow-x: hidden !important;
     word-break: break-word !important;
+  }
+
+  .projects-section, .proj-stack {
+    overflow: visible !important;
+    overflow-x: visible !important;
   }
 
   .tab-nav {
