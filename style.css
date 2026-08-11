@@ -1627,21 +1627,45 @@ button {
     font-weight: 600 !important;
   }
 
-  /* Resume Tag Button on Mobile Coin */
-  .pfp-badge-tag.tag-resume {
-    font-size: 0.88rem !important;
+  .settled-pfp-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 12px auto 14px !important;
+    position: relative !important;
+  }
+
+  .settled-pfp-img {
+    width: 125px !important;
+    height: 125px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 2.5px solid var(--pink) !important;
+    box-shadow: 0 0 24px rgba(232, 91, 100, 0.4), 0 8px 24px rgba(0,0,0,0.5) !important;
+  }
+
+  .settled-resume-btn {
+    font-size: 0.82rem !important;
     font-weight: 800 !important;
-    padding: 6px 20px !important;
-    bottom: -40px !important;
-    z-index: 50 !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(232, 91, 100, 0.3) !important;
+    padding: 6px 18px !important;
+    margin-top: 10px !important;
+    position: relative !important;
+    bottom: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    background: linear-gradient(135deg, var(--pink), #d0444d) !important;
+    color: var(--white) !important;
+    border-radius: 50px !important;
+    box-shadow: 0 4px 16px rgba(232, 91, 100, 0.35) !important;
   }
 
   .settled-grid-container {
     display: flex !important;
     flex-direction: column !important;
-    gap: 6px !important;
-    margin-top: 155px !important; /* Generous 35px empty clearance buffer above bio card for all phone aspect ratios */
+    gap: 8px !important;
+    margin-top: 12px !important; /* Perfect natural document flow */
     width: 100% !important;
   }
 

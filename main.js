@@ -227,10 +227,18 @@ document.addEventListener('DOMContentLoaded', () => {
         coinCylinder.style.opacity = cylinderOpacity.toFixed(3);
       }
 
-      // Resume/CV button ONLY in Frame 3
+      // On mobile, floating 3D coin fades out as Frame 3 settles so it hands over to the settled-pfp photo
+      if (isMobile && p > 0.58) {
+        const mobCoinFade = Math.max(0, 1 - (p - 0.58) * 5);
+        pfpStage.style.opacity = mobCoinFade.toFixed(3);
+      } else {
+        pfpStage.style.opacity = '1';
+      }
+
+      // Resume/CV button ONLY in Frame 3 (Desktop)
       const tagResume = document.getElementById('tagResume');
       if (tagResume) {
-        if (p < 0.62) {
+        if (p < 0.62 || isMobile) {
           tagResume.style.opacity = '0';
           tagResume.style.pointerEvents = 'none';
         } else {
