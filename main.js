@@ -144,8 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = window.innerWidth <= 992;
 
-    // 1. Frame 1 Elements (Title, Blurry Card, Specs) fade out (0.0 -> 0.30)
-    const f1Opacity = Math.max(0, 1 - p * 3.3);
+    // 1. Frame 1 Elements (Title, Blurry Card, Specs) fade out (0.0 -> 0.22)
+    const f1Opacity = isMobile ? Math.max(0, 1 - p * 4.5) : Math.max(0, 1 - p * 3.3);
     document.querySelectorAll('.frame1-el').forEach(el => {
       el.style.opacity = f1Opacity.toFixed(3);
       if (isMobile) {
@@ -153,23 +153,31 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         el.style.transform = `translate3d(${(p * -120).toFixed(1)}px, 0, 0)`;
       }
-      el.style.pointerEvents = p < 0.2 ? 'auto' : 'none';
+      el.style.pointerEvents = f1Opacity > 0.3 ? 'auto' : 'none';
     });
 
     // 2. Frame 2 Statement Elements (Only trigger when scrolling DOWN)
     let f2Opacity = 0;
-    if (!isScrollingUp && p >= 0.25 && p <= 0.72) {
-      const distFromPeak = Math.abs(p - 0.485);
-      f2Opacity = Math.max(0, 1 - distFromPeak * 4.8);
+    if (isMobile) {
+      // On mobile, Frame 2 statement is active ONLY between p = 0.20 and p = 0.50 (peaks at 0.35, gone by 0.50)
+      if (!isScrollingUp && p >= 0.20 && p <= 0.50) {
+        const distFromPeak = Math.abs(p - 0.35);
+        f2Opacity = Math.max(0, 1 - distFromPeak * 6.6);
+      }
+    } else {
+      if (!isScrollingUp && p >= 0.25 && p <= 0.72) {
+        const distFromPeak = Math.abs(p - 0.485);
+        f2Opacity = Math.max(0, 1 - distFromPeak * 4.8);
+      }
     }
     if (frame2Left) frame2Left.style.opacity = f2Opacity.toFixed(3);
     if (frame2Right) frame2Right.style.opacity = f2Opacity.toFixed(3);
 
-    // 3. Frame 3 Settled Stage fades in
+    // 3. Frame 3 Settled Stage fades in (Starts at p > 0.52 on mobile so Frame 2 is 100% gone)
     let f3Opacity = 0;
-    const f3Start = isMobile ? 0.38 : 0.68;
+    const f3Start = isMobile ? 0.52 : 0.68;
     if (p > f3Start) {
-      f3Opacity = Math.min(1, (p - f3Start) * (isMobile ? 2.6 : 3.125));
+      f3Opacity = Math.min(1, (p - f3Start) * (isMobile ? 3.5 : 3.125));
     }
     if (frame3Settled) {
       frame3Settled.style.opacity = f3Opacity.toFixed(3);
@@ -178,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         frame3Settled.style.transform = `translateX(-50%) translate3d(0, ${((1 - f3Opacity) * 30).toFixed(1)}px, 0)`;
       }
-      frame3Settled.style.pointerEvents = f3Opacity > 0.3 ? 'auto' : 'none';
+      frame3Settled.style.pointerEvents = f3Opacity > 0.4 ? 'auto' : 'none';
     }
 
     // 4. Central Profile Disc Motion Controller (Works on desktop & mobile)
@@ -186,12 +194,12 @@ document.addEventListener('DOMContentLoaded', () => {
       let leftPct, topPct;
       if (isMobile) {
         leftPct = 50;
-        // On mobile, coin settles smoothly at top 26% when entering Frame 3
-        if (p > 0.38) {
-          let t = (p - 0.38) / 0.62;
-          topPct = (1 - t) * 48 + t * 26; // 48% -> 26%
+        // On mobile, coin settles smoothly at top 14% when entering Frame 3 (p >= 0.52)
+        if (p > 0.52) {
+          let t = (p - 0.52) / 0.48;
+          topPct = (1 - t) * 48 + t * 14; // 48% -> 14%
         } else {
-          topPct = 46 + (p * 5); // 46% -> 48%
+          topPct = 46 + (p * 4); // 46% -> 48%
         }
       } else {
         leftPct = 58 - (p * 8); // 58% -> 50%
@@ -205,12 +213,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Scale interpolation
       let baseScale = isMobile ? 0.72 : 1;
-      let settledScale = isMobile ? 0.48 : 0.6815;
+      let settledScale = isMobile ? 0.46 : 0.6815;
 
       let scale = baseScale + Math.sin(p * Math.PI) * 0.16;
-      if (p > 0.38) {
-        let t = (p - 0.38) / 0.62;
-        scale = (1 - t) * (baseScale + Math.sin(0.38 * Math.PI) * 0.16) + t * settledScale;
+      if (p > 0.52) {
+        let t = (p - 0.52) / 0.48;
+        scale = (1 - t) * (baseScale + Math.sin(0.52 * Math.PI) * 0.16) + t * settledScale;
       }
       if (isScrollingUp) {
         scale = settledScale + (1 - p) * (baseScale - settledScale);

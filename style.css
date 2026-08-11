@@ -1632,7 +1632,7 @@ button {
     display: flex !important;
     flex-direction: column !important;
     gap: 6px !important;
-    margin-top: 125px !important; /* Reserved space for profile coin at top 24% */
+    margin-top: 142px !important; /* Space for profile coin at top 14% & Resume button */
     width: 100% !important;
   }
 
