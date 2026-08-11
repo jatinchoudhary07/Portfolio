@@ -131,8 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollY = currentY;
   }, { passive: true });
 
-  let hasFlippedOnce = false;
-
   function updateHeroScroll() {
     if (!heroScrollTrack) return;
     const rect = heroScrollTrack.getBoundingClientRect();
@@ -146,17 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = window.innerWidth <= 992;
 
-    // Reset initial flip flag ONLY if user scrolls back to very top of page (p < 0.05)
-    if (p < 0.05) {
-      hasFlippedOnce = false;
-    }
-    // Set flip flag once user reaches Frame 3 (p >= 0.55)
-    if (p >= 0.55) {
-      hasFlippedOnce = true;
-    }
-
-    // 1. Frame 1 Elements (Title, Blurry Card, Specs) fade out (0.0 -> 0.22)
-    const f1Opacity = hasFlippedOnce ? 0 : (isMobile ? Math.max(0, 1 - p * 4.5) : Math.max(0, 1 - p * 3.3));
+    // 1. Frame 1 Elements (Title, Blurry Card, Specs) fade out (0.0 -> 0.28)
+    const f1Opacity = isMobile ? Math.max(0, 1 - p * 4.2) : Math.max(0, 1 - p * 3.3);
     document.querySelectorAll('.frame1-el').forEach(el => {
       el.style.opacity = f1Opacity.toFixed(3);
       if (isMobile) {
@@ -167,9 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.pointerEvents = f1Opacity > 0.3 ? 'auto' : 'none';
     });
 
-    // 2. Frame 2 Statement Elements (ONLY active on initial FIRST scroll down)
+    // 2. Frame 2 Statement Elements (ONLY active when scrolling DOWN)
     let f2Opacity = 0;
-    if (!hasFlippedOnce && !isScrollingUp) {
+    if (!isScrollingUp) {
       if (isMobile) {
         if (p >= 0.20 && p <= 0.50) {
           const distFromPeak = Math.abs(p - 0.35);
@@ -187,13 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Frame 3 Settled Stage
     let f3Opacity = 0;
-    if (hasFlippedOnce) {
-      f3Opacity = p > 0.08 ? 1 : 0;
-    } else {
-      const f3Start = isMobile ? 0.52 : 0.68;
-      if (p > f3Start) {
-        f3Opacity = Math.min(1, (p - f3Start) * (isMobile ? 3.5 : 3.125));
-      }
+    const f3Start = isMobile ? 0.50 : 0.68;
+    if (p > f3Start) {
+      f3Opacity = Math.min(1, (p - f3Start) * (isMobile ? 3.5 : 3.125));
     }
     if (frame3Settled) {
       frame3Settled.style.opacity = f3Opacity.toFixed(3);
@@ -206,19 +191,20 @@ document.addEventListener('DOMContentLoaded', () => {
       let leftPct, topPct;
       if (isMobile) {
         leftPct = 50;
-        if (hasFlippedOnce || p > 0.52) {
-          topPct = 14;
+        if (p > 0.50) {
+          let t = (p - 0.50) / 0.50;
+          topPct = (1 - t) * 48 + t * 14;
         } else {
           topPct = 46 + (p * 4);
         }
       } else {
-        leftPct = hasFlippedOnce ? 50 : 58 - (p * 8);
-        topPct  = hasFlippedOnce ? 50 : 48 + (p * 2);
+        leftPct = 58 - (p * 8);
+        topPct  = 48 + (p * 2);
       }
 
-      // 3D Coin Rotation Dynamics (ONLY active on INITIAL FIRST SCROLL DOWN)
+      // 3D Coin Rotation Dynamics: ACTIVE ONLY WHEN SCROLLING DOWN (Flat steady coin when scrolling up)
       let rotX = 0, rotY = 0, rotZ = 0;
-      if (!hasFlippedOnce && !isScrollingUp) {
+      if (!isScrollingUp) {
         rotX = Math.sin(p * Math.PI) * 72;
         rotY = Math.sin(p * Math.PI) * -24;
         rotZ = p * 360;
@@ -229,13 +215,15 @@ document.addEventListener('DOMContentLoaded', () => {
       let settledScale = isMobile ? 0.46 : 0.6815;
 
       let scale = baseScale + Math.sin(p * Math.PI) * 0.16;
-      if (p > 0.52) {
-        let t = (p - 0.52) / 0.48;
-        scale = (1 - t) * (baseScale + Math.sin(0.52 * Math.PI) * 0.16) + t * settledScale;
+      if (p > 0.50) {
+        let t = (p - 0.50) / 0.50;
+        scale = (1 - t) * (baseScale + Math.sin(0.50 * Math.PI) * 0.16) + t * settledScale;
       }
       if (isScrollingUp) {
         scale = settledScale + (1 - p) * (baseScale - settledScale);
       }
+
+
 
       // Solid metallic coin cylinder edge wall fades out as coin settles flat
       const coinCylinder = document.getElementById('coinSolidCylinder');

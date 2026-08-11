@@ -52,6 +52,18 @@ body {
   cursor: none;
 }
 
+/* Hide in-flow profile photo wrap on desktop (desktop uses 3D coin in center spacer) */
+.settled-pfp-wrap {
+  display: none !important;
+}
+.settled-pfp-img {
+  width: 120px !important;
+  height: 120px !important;
+  max-width: 120px !important;
+  max-height: 120px !important;
+  border-radius: 50% !important;
+}
+
 a {
   text-decoration: none;
   color: inherit;
