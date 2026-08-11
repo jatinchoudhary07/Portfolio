@@ -655,6 +655,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ===================================================
+  // SMART MAIL TRIGGER HANDLER
+  // Desktop: opens Gmail Web Compose in new tab with pre-filled To:
+  // Mobile: opens native Mail app with pre-filled To:
+  // ===================================================
+  document.querySelectorAll('a[href^="mailto:"], .contact-connect-btn, .mail-trigger').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      const isMobile = window.innerWidth <= 768;
+      const targetEmail = 'jatinchoudhary07.05@gmail.com';
+      const subject = encodeURIComponent("Portfolio Inquiry - Let's Connect");
+
+      if (isMobile) {
+        window.location.href = `mailto:${targetEmail}?subject=${subject}`;
+      } else {
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}`, '_blank');
+      }
+    });
+  });
+
+  // ===================================================
   // CONTACT FORM SUBMISSION HANDLER
   // Sends message directly to jatinchoudhary07.05@gmail.com
   // ===================================================
@@ -736,10 +756,11 @@ document.addEventListener('DOMContentLoaded', () => {
         form.reset();
       } else {
         // Fallback: Open Gmail / Mail Client with pre-filled message
+        const isMobile = window.innerWidth <= 768;
         const subject = encodeURIComponent(`Portfolio Inquiry from ${nameVal}`);
         const body    = encodeURIComponent(`Name: ${nameVal}\nEmail: ${emailVal}\n\nMessage:\n${msgVal}`);
         
-        if (isMobileUser()) {
+        if (isMobile) {
           window.location.href = `mailto:jatinchoudhary07.05@gmail.com?subject=${subject}&body=${body}`;
         } else {
           window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=jatinchoudhary07.05@gmail.com&su=${subject}&body=${body}`, '_blank');
