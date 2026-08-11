@@ -165,10 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (frame2Left) frame2Left.style.opacity = f2Opacity.toFixed(3);
     if (frame2Right) frame2Right.style.opacity = f2Opacity.toFixed(3);
 
-    // 3. Frame 3 Settled Stage fades in (0.70 -> 1.0)
+    // 3. Frame 3 Settled Stage fades in
     let f3Opacity = 0;
-    if (p > 0.68) {
-      f3Opacity = Math.min(1, (p - 0.68) * 3.125);
+    const f3Start = isMobile ? 0.38 : 0.68;
+    if (p > f3Start) {
+      f3Opacity = Math.min(1, (p - f3Start) * (isMobile ? 2.6 : 3.125));
     }
     if (frame3Settled) {
       frame3Settled.style.opacity = f3Opacity.toFixed(3);
@@ -177,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         frame3Settled.style.transform = `translateX(-50%) translate3d(0, ${((1 - f3Opacity) * 30).toFixed(1)}px, 0)`;
       }
-      frame3Settled.style.pointerEvents = f3Opacity > 0.4 ? 'auto' : 'none';
+      frame3Settled.style.pointerEvents = f3Opacity > 0.3 ? 'auto' : 'none';
     }
 
     // 4. Central Profile Disc Motion Controller (Works on desktop & mobile)
@@ -185,13 +186,12 @@ document.addEventListener('DOMContentLoaded', () => {
       let leftPct, topPct;
       if (isMobile) {
         leftPct = 50;
-        // In Frame 1 & 2 (p < 0.60), coin is centered (46% -> 48%)
-        // In Frame 3 (p >= 0.60), coin smoothly settles at 24% near top
-        if (p > 0.60) {
-          let t = (p - 0.60) / 0.40;
-          topPct = (1 - t) * 48 + t * 24; // 48% -> 24%
+        // On mobile, coin settles smoothly at top 26% when entering Frame 3
+        if (p > 0.38) {
+          let t = (p - 0.38) / 0.62;
+          topPct = (1 - t) * 48 + t * 26; // 48% -> 26%
         } else {
-          topPct = 46 + (p * 3.33); // 46% -> 48%
+          topPct = 46 + (p * 5); // 46% -> 48%
         }
       } else {
         leftPct = 58 - (p * 8); // 58% -> 50%
@@ -204,13 +204,13 @@ document.addEventListener('DOMContentLoaded', () => {
       let rotZ = isScrollingUp ? 0 : p * 360;
 
       // Scale interpolation
-      let baseScale = isMobile ? 0.78 : 1;
-      let settledScale = isMobile ? 0.54 : 0.6815;
+      let baseScale = isMobile ? 0.72 : 1;
+      let settledScale = isMobile ? 0.48 : 0.6815;
 
       let scale = baseScale + Math.sin(p * Math.PI) * 0.16;
-      if (p > 0.60) {
-        let t = (p - 0.60) / 0.40;
-        scale = (1 - t) * (baseScale + Math.sin(0.60 * Math.PI) * 0.16) + t * settledScale;
+      if (p > 0.38) {
+        let t = (p - 0.38) / 0.62;
+        scale = (1 - t) * (baseScale + Math.sin(0.38 * Math.PI) * 0.16) + t * settledScale;
       }
       if (isScrollingUp) {
         scale = settledScale + (1 - p) * (baseScale - settledScale);

@@ -1418,10 +1418,10 @@ button {
 
 /* Mobile & Tablet Responsiveness */
 @media (max-width: 992px) {
-  /* ── Hero: 3D Coinflip Scroll Animation on Mobile & Clean Frame 1 (Screenshot 2 style) ── */
+  /* ── Hero: Fast 3D Coinflip Scroll Animation on Mobile ── */
   .hero-scroll-track {
     position: relative !important;
-    height: 250vh !important;
+    height: 160vh !important;
     width: 100% !important;
   }
 
@@ -3272,28 +3272,22 @@ em {
     position: sticky !important;
     height: auto !important;
     min-height: 0 !important;
-    border-radius: 20px;
-    margin-bottom: 16px;
-    /* stagger-in entrance */
-    opacity: 0;
-    transform: translateY(28px) scale(0.97);
-    transition:
-      opacity 0.55s var(--ease-out),
-      transform 0.55s var(--ease-out),
-      border-color 0.3s,
-      box-shadow 0.3s;
-    will-change: transform, opacity;
+    border-radius: 20px !important;
+    margin-bottom: 36px !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
 
-  /* Individual sticky top offset — each card 4px lower
-     so they form a visible peekable stack */
-  .psc:nth-child(1) { top: 68px;  z-index: 1; }
-  .psc:nth-child(2) { top: 72px;  z-index: 2; }
-  .psc:nth-child(3) { top: 76px;  z-index: 3; }
-  .psc:nth-child(4) { top: 80px;  z-index: 4; }
-  .psc:nth-child(5) { top: 84px;  z-index: 5; }
-  .psc:nth-child(6) { top: 88px;  z-index: 6; }
-  .psc:nth-child(7) { top: 92px;  z-index: 7; }
+  /* Individual sticky top offset — each card 8px lower
+     so they form a visible peekable stack below the 64px navbar */
+  .psc:nth-child(1) { top: 80px !important; z-index: 1 !important; }
+  .psc:nth-child(2) { top: 88px !important; z-index: 2 !important; }
+  .psc:nth-child(3) { top: 96px !important; z-index: 3 !important; }
+  .psc:nth-child(4) { top: 104px !important; z-index: 4 !important; }
+  .psc:nth-child(5) { top: 112px !important; z-index: 5 !important; }
+  .psc:nth-child(6) { top: 120px !important; z-index: 6 !important; }
+  .psc:nth-child(7) { top: 128px !important; z-index: 7 !important; }
 
   /* Card revealed: slide up + fade in */
   .psc.mob-revealed {
