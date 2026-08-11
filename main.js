@@ -181,11 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (frame3Settled) {
       frame3Settled.style.opacity = f3Opacity.toFixed(3);
-      if (isMobile) {
-        frame3Settled.style.transform = `translate(-50%, -50%) translate3d(0, ${((1 - f3Opacity) * 20).toFixed(1)}px, 0)`;
-      } else {
-        frame3Settled.style.transform = `translateX(-50%) translate3d(0, ${((1 - f3Opacity) * 30).toFixed(1)}px, 0)`;
-      }
+      frame3Settled.style.transform = `translateX(-50%) translate3d(0, ${((1 - f3Opacity) * 20).toFixed(1)}px, 0)`;
       frame3Settled.style.pointerEvents = f3Opacity > 0.4 ? 'auto' : 'none';
     }
 

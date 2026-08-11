@@ -1580,19 +1580,28 @@ button {
     margin-top: 10px !important;
   }
 
-  /* Frame 3 Settled Stage on Mobile — Centered cleanly in viewport */
+  /* Frame 3 Settled Stage on Mobile — Clean Top Anchor with Smooth Internal Scroll */
   .frame3-settled-stage {
     display: flex !important;
     flex-direction: column !important;
     position: absolute !important;
-    top: 50% !important;
+    top: 68px !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    transform: translateX(-50%) !important;
     width: 92vw !important;
     max-width: 440px !important;
+    max-height: calc(100vh - 72px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
     z-index: 15 !important;
     gap: 4px !important;
-    padding-bottom: 4px !important;
+    padding-bottom: 24px !important;
+    scrollbar-width: none !important;
+  }
+
+  .frame3-settled-stage::-webkit-scrollbar {
+    display: none !important;
   }
 
   .settled-header {
