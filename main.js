@@ -131,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollY = currentY;
   }, { passive: true });
 
+  let hasFlippedOnce = false;
+
   function updateHeroScroll() {
     if (!heroScrollTrack) return;
     const rect = heroScrollTrack.getBoundingClientRect();
@@ -144,8 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = window.innerWidth <= 992;
 
+    // Reset initial flip flag ONLY if user scrolls back to very top of page (p < 0.05)
+    if (p < 0.05) {
+      hasFlippedOnce = false;
+    }
+    // Set flip flag once user reaches Frame 3 (p >= 0.55)
+    if (p >= 0.55) {
+      hasFlippedOnce = true;
+    }
+
     // 1. Frame 1 Elements (Title, Blurry Card, Specs) fade out (0.0 -> 0.22)
-    const f1Opacity = isMobile ? Math.max(0, 1 - p * 4.5) : Math.max(0, 1 - p * 3.3);
+    const f1Opacity = hasFlippedOnce ? 0 : (isMobile ? Math.max(0, 1 - p * 4.5) : Math.max(0, 1 - p * 3.3));
     document.querySelectorAll('.frame1-el').forEach(el => {
       el.style.opacity = f1Opacity.toFixed(3);
       if (isMobile) {
@@ -156,28 +167,33 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.pointerEvents = f1Opacity > 0.3 ? 'auto' : 'none';
     });
 
-    // 2. Frame 2 Statement Elements (Only trigger when scrolling DOWN)
+    // 2. Frame 2 Statement Elements (ONLY active on initial FIRST scroll down)
     let f2Opacity = 0;
-    if (isMobile) {
-      // On mobile, Frame 2 statement is active ONLY between p = 0.20 and p = 0.50 (peaks at 0.35, gone by 0.50)
-      if (!isScrollingUp && p >= 0.20 && p <= 0.50) {
-        const distFromPeak = Math.abs(p - 0.35);
-        f2Opacity = Math.max(0, 1 - distFromPeak * 6.6);
-      }
-    } else {
-      if (!isScrollingUp && p >= 0.25 && p <= 0.72) {
-        const distFromPeak = Math.abs(p - 0.485);
-        f2Opacity = Math.max(0, 1 - distFromPeak * 4.8);
+    if (!hasFlippedOnce && !isScrollingUp) {
+      if (isMobile) {
+        if (p >= 0.20 && p <= 0.50) {
+          const distFromPeak = Math.abs(p - 0.35);
+          f2Opacity = Math.max(0, 1 - distFromPeak * 6.6);
+        }
+      } else {
+        if (p >= 0.25 && p <= 0.72) {
+          const distFromPeak = Math.abs(p - 0.485);
+          f2Opacity = Math.max(0, 1 - distFromPeak * 4.8);
+        }
       }
     }
     if (frame2Left) frame2Left.style.opacity = f2Opacity.toFixed(3);
     if (frame2Right) frame2Right.style.opacity = f2Opacity.toFixed(3);
 
-    // 3. Frame 3 Settled Stage fades in (Starts at p > 0.52 on mobile so Frame 2 is 100% gone)
+    // 3. Frame 3 Settled Stage
     let f3Opacity = 0;
-    const f3Start = isMobile ? 0.52 : 0.68;
-    if (p > f3Start) {
-      f3Opacity = Math.min(1, (p - f3Start) * (isMobile ? 3.5 : 3.125));
+    if (hasFlippedOnce) {
+      f3Opacity = p > 0.08 ? 1 : 0;
+    } else {
+      const f3Start = isMobile ? 0.52 : 0.68;
+      if (p > f3Start) {
+        f3Opacity = Math.min(1, (p - f3Start) * (isMobile ? 3.5 : 3.125));
+      }
     }
     if (frame3Settled) {
       frame3Settled.style.opacity = f3Opacity.toFixed(3);
@@ -185,27 +201,28 @@ document.addEventListener('DOMContentLoaded', () => {
       frame3Settled.style.pointerEvents = f3Opacity > 0.4 ? 'auto' : 'none';
     }
 
-    // 4. Central Profile Disc Motion Controller (Works on desktop & mobile)
+    // 4. Central Profile Disc Motion Controller
     if (pfpStage) {
       let leftPct, topPct;
       if (isMobile) {
         leftPct = 50;
-        // On mobile, coin settles smoothly at top 14% when entering Frame 3 (p >= 0.52)
-        if (p > 0.52) {
-          let t = (p - 0.52) / 0.48;
-          topPct = (1 - t) * 48 + t * 14; // 48% -> 14%
+        if (hasFlippedOnce || p > 0.52) {
+          topPct = 14;
         } else {
-          topPct = 46 + (p * 4); // 46% -> 48%
+          topPct = 46 + (p * 4);
         }
       } else {
-        leftPct = 58 - (p * 8); // 58% -> 50%
-        topPct  = 48 + (p * 2); // 48% -> 50%
+        leftPct = hasFlippedOnce ? 50 : 58 - (p * 8);
+        topPct  = hasFlippedOnce ? 50 : 48 + (p * 2);
       }
 
-      // 3D Coin Rotation Dynamics (ONLY active when scrolling DOWN)
-      let rotX = isScrollingUp ? 0 : Math.sin(p * Math.PI) * 72;
-      let rotY = isScrollingUp ? 0 : Math.sin(p * Math.PI) * -24;
-      let rotZ = isScrollingUp ? 0 : p * 360;
+      // 3D Coin Rotation Dynamics (ONLY active on INITIAL FIRST SCROLL DOWN)
+      let rotX = 0, rotY = 0, rotZ = 0;
+      if (!hasFlippedOnce && !isScrollingUp) {
+        rotX = Math.sin(p * Math.PI) * 72;
+        rotY = Math.sin(p * Math.PI) * -24;
+        rotZ = p * 360;
+      }
 
       // Scale interpolation
       let baseScale = isMobile ? 0.72 : 1;
