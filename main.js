@@ -181,16 +181,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (pfpStage) {
         pfpStage.style.left = '50%';
 
-        // Top position: Frame 1 (46%) -> Frame 2 (41.5%) -> Frame 3 (20%)
+        // Top position: Frame 1 (46%) -> Frame 2 (37.0%) -> Frame 3 (20%)
         let topPct;
         if (p < 0.30) {
           topPct = 46;
         } else if (p < 0.60) {
           let t = (p - 0.30) / 0.30;
-          topPct = (1 - t) * 46 + t * 41.5;
+          topPct = (1 - t) * 46 + t * 37.0;
         } else {
           let t = (p - 0.60) / 0.40;
-          topPct = (1 - t) * 41.5 + t * 20;
+          topPct = (1 - t) * 37.0 + t * 20;
         }
         pfpStage.style.top = `${topPct.toFixed(2)}%`;
 
