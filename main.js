@@ -135,6 +135,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateHeroScroll() {
     if (!heroScrollTrack) return;
+
+    const isMobile = window.innerWidth <= 992;
+
+    // On mobile, bypass 3D coinflip scroll transforms for 100% native smooth layout
+    if (isMobile) {
+      if (pfpStage) {
+        pfpStage.style.left = '';
+        pfpStage.style.top = '';
+        pfpStage.style.transform = '';
+        pfpStage.style.opacity = '1';
+      }
+      const tagResume = document.getElementById('tagResume');
+      if (tagResume) {
+        tagResume.style.opacity = '1';
+        tagResume.style.pointerEvents = 'auto';
+      }
+      if (frame3Settled) {
+        frame3Settled.style.opacity = '1';
+        frame3Settled.style.transform = '';
+        frame3Settled.style.pointerEvents = 'auto';
+      }
+      document.querySelectorAll('.frame1-el').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = '';
+        el.style.pointerEvents = 'auto';
+      });
+      return;
+    }
+
     const rect = heroScrollTrack.getBoundingClientRect();
     const trackHeight = rect.height - window.innerHeight;
     if (trackHeight <= 0) return;
@@ -143,8 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
     p = Math.max(0, Math.min(1, p));
 
     document.documentElement.style.setProperty('--hero-progress', p.toFixed(4));
-
-    const isMobile = window.innerWidth <= 992;
 
     // Once user reaches Frame 3 for the first time, mark initial coin flip as permanently DONE until page refresh
     if (p >= 0.65) {
