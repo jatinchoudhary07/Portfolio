@@ -138,32 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = window.innerWidth <= 992;
 
-    // On mobile, bypass 3D coinflip scroll transforms for 100% native smooth layout
-    if (isMobile) {
-      if (pfpStage) {
-        pfpStage.style.left = '';
-        pfpStage.style.top = '';
-        pfpStage.style.transform = '';
-        pfpStage.style.opacity = '1';
-      }
-      const tagResume = document.getElementById('tagResume');
-      if (tagResume) {
-        tagResume.style.opacity = '1';
-        tagResume.style.pointerEvents = 'auto';
-      }
-      if (frame3Settled) {
-        frame3Settled.style.opacity = '1';
-        frame3Settled.style.transform = '';
-        frame3Settled.style.pointerEvents = 'auto';
-      }
-      document.querySelectorAll('.frame1-el').forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = '';
-        el.style.pointerEvents = 'auto';
-      });
-      return;
-    }
-
     const rect = heroScrollTrack.getBoundingClientRect();
     const trackHeight = rect.height - window.innerHeight;
     if (trackHeight <= 0) return;
@@ -172,6 +146,90 @@ document.addEventListener('DOMContentLoaded', () => {
     p = Math.max(0, Math.min(1, p));
 
     document.documentElement.style.setProperty('--hero-progress', p.toFixed(4));
+
+    if (isMobile) {
+      // ── MOBILE 3-STAGE SCROLL FLOW ──
+
+      // 1. Frame 1 (Landing View: 0.0 -> 0.28)
+      const f1Opacity = Math.max(0, 1 - p * 3.8);
+      document.querySelectorAll('.frame1-el').forEach(el => {
+        el.style.opacity = f1Opacity.toFixed(3);
+        el.style.pointerEvents = f1Opacity > 0.3 ? 'auto' : 'none';
+      });
+
+      // 2. Frame 2 (Statement & Resume View: 0.20 -> 0.58, peaks at 0.38)
+      let f2Opacity = 0;
+      if (p >= 0.20 && p <= 0.58) {
+        const distFromPeak = Math.abs(p - 0.38);
+        f2Opacity = Math.max(0, 1 - distFromPeak * 5.5);
+      }
+      if (frame2Left) frame2Left.style.opacity = f2Opacity.toFixed(3);
+      if (frame2Right) frame2Right.style.opacity = f2Opacity.toFixed(3);
+
+      // 3. Frame 3 (Settled View matching screenshot: 0.55 -> 1.0)
+      let f3Opacity = 0;
+      if (p > 0.55) {
+        f3Opacity = Math.min(1, (p - 0.55) * 2.8);
+      }
+      if (frame3Settled) {
+        frame3Settled.style.opacity = f3Opacity.toFixed(3);
+        frame3Settled.style.transform = `translateX(-50%) translate3d(0, ${((1 - f3Opacity) * 20).toFixed(1)}px, 0)`;
+        frame3Settled.style.pointerEvents = f3Opacity > 0.4 ? 'auto' : 'none';
+      }
+
+      // Profile Circle Photo & Resume Button on Mobile
+      if (pfpStage) {
+        pfpStage.style.left = '50%';
+
+        // Top position: Frame 1 (46%) -> Frame 2 (38%) -> Frame 3 (20%)
+        let topPct;
+        if (p < 0.30) {
+          topPct = 46;
+        } else if (p < 0.60) {
+          let t = (p - 0.30) / 0.30;
+          topPct = (1 - t) * 46 + t * 38;
+        } else {
+          let t = (p - 0.60) / 0.40;
+          topPct = (1 - t) * 38 + t * 20;
+        }
+        pfpStage.style.top = `${topPct.toFixed(2)}%`;
+
+        // Scale: Frame 1 (0.72) -> Frame 2 grows larger (0.88) -> Frame 3 (0.50)
+        let mobScale;
+        if (p < 0.30) {
+          mobScale = 0.72 + (p * 0.53); // Grows slightly larger on 2nd scroll!
+        } else if (p < 0.60) {
+          mobScale = 0.88; // Enlarged profile in Frame 2!
+        } else {
+          let t = (p - 0.60) / 0.40;
+          mobScale = (1 - t) * 0.88 + t * 0.50;
+        }
+
+        // NO 3D ROTATION ON MOBILE: Flat, steady, smooth photo!
+        pfpStage.style.transform = `translate(-50%, -50%) scale(${mobScale.toFixed(3)})`;
+
+        // In Frame 3 (p > 0.65), profile coin fades out on mobile so screenshot cards scroll cleanly
+        if (p > 0.65) {
+          pfpStage.style.opacity = Math.max(0, 1 - (p - 0.65) * 5).toFixed(3);
+        } else {
+          pfpStage.style.opacity = '1';
+        }
+      }
+
+      // Resume/CV Button: Appears ONLY in Frame 2 (p >= 0.22 and p <= 0.65)
+      const tagResume = document.getElementById('tagResume');
+      if (tagResume) {
+        if (p >= 0.22 && p <= 0.65) {
+          tagResume.style.opacity = '1';
+          tagResume.style.pointerEvents = 'auto';
+        } else {
+          tagResume.style.opacity = '0';
+          tagResume.style.pointerEvents = 'none';
+        }
+      }
+
+      return;
+    }
 
     // Once user reaches Frame 3 for the first time, mark initial coin flip as permanently DONE until page refresh
     if (p >= 0.65) {
