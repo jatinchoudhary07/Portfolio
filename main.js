@@ -182,10 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isMobile) {
         leftPct = 50;
         // In Frame 1 & 2 (p < 0.60), coin is centered (46% -> 48%)
-        // In Frame 3 (p >= 0.60), coin smoothly glides up to 18% near top header
+        // In Frame 3 (p >= 0.60), coin smoothly glides up to 11.5% near top header
         if (p > 0.60) {
           let t = (p - 0.60) / 0.40;
-          topPct = (1 - t) * 48 + t * 19.5; // 48% -> 19.5%
+          topPct = (1 - t) * 48 + t * 11.5; // 48% -> 11.5%
         } else {
           topPct = 46 + (p * 3.33); // 46% -> 48%
         }

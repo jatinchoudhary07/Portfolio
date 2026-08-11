@@ -36,6 +36,9 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
 }
 
 body {
@@ -43,7 +46,9 @@ body {
   color: var(--white);
   font-family: var(--f2);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
   cursor: none;
 }
 
@@ -1489,17 +1494,17 @@ button {
   /* Frame 1 Bottom Card (Clean Screenshot 2 layout below coin) */
   .oryzo-blurry-card {
     position: absolute !important;
-    top: 67vh !important;
+    top: 58vh !important;
     bottom: auto !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     width: 90vw !important;
     max-width: 380px !important;
-    padding: 14px 18px !important;
+    padding: 10px 16px !important;
     align-items: center !important;
     text-align: center !important;
-    gap: 8px !important;
-    background: rgba(10, 20, 34, 0.8) !important;
+    gap: 6px !important;
+    background: rgba(10, 20, 34, 0.82) !important;
     backdrop-filter: blur(18px) !important;
     border-radius: 16px !important;
     z-index: 20 !important;
@@ -1519,12 +1524,14 @@ button {
 
   .card-actions {
     margin-top: 2px !important;
-    gap: 10px !important;
+    gap: 8px !important;
+    width: 100% !important;
+    justify-content: center !important;
   }
 
   .btn-primary, .btn-ghost {
-    padding: 8px 18px !important;
-    font-size: 0.78rem !important;
+    padding: 7px 16px !important;
+    font-size: 0.76rem !important;
   }
 
   /* Specs block (What I Build): hidden in Frame 1 to prevent mobile clutter */
@@ -1581,15 +1588,14 @@ button {
     top: 74px !important; /* Positioned below 68px top navbar for 100% heading visibility */
     left: 50% !important;
     transform: translateX(-50%) !important;
-    width: 94vw !important;
+    width: 92vw !important;
     max-width: 440px !important;
     z-index: 15 !important;
     gap: 4px !important;
-    max-height: 90vh !important;
+    max-height: 88vh !important;
     overflow-y: auto !important;
     scrollbar-width: none !important;
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
+    padding-bottom: 4px !important;
   }
 
   .frame3-settled-stage::-webkit-scrollbar {
@@ -1598,11 +1604,11 @@ button {
 
   .settled-header {
     text-align: center !important;
-    margin-bottom: 4px !important;
+    margin-bottom: 2px !important;
   }
 
   .settled-name {
-    font-size: clamp(1.6rem, 6.5vw, 2.2rem) !important;
+    font-size: clamp(1.5rem, 6vw, 2.1rem) !important;
     font-weight: 900 !important;
     color: var(--white) !important;
     letter-spacing: -1px !important;
@@ -1613,18 +1619,18 @@ button {
   }
 
   .settled-tagline {
-    font-size: 0.76rem !important;
+    font-size: 0.74rem !important;
     color: var(--blue) !important;
-    margin-top: 2px !important;
+    margin-top: 1px !important;
     font-weight: 600 !important;
   }
 
   /* Resume Tag Button on Mobile Coin */
   .pfp-badge-tag.tag-resume {
-    font-size: 0.92rem !important;
+    font-size: 0.88rem !important;
     font-weight: 800 !important;
-    padding: 7px 22px !important;
-    bottom: -45px !important; /* 7px gap below coin rim */
+    padding: 6px 20px !important;
+    bottom: -42px !important; /* 7px gap below coin rim */
     z-index: 50 !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(232, 91, 100, 0.3) !important;
   }
@@ -1632,9 +1638,41 @@ button {
   .settled-grid-container {
     display: flex !important;
     flex-direction: column !important;
-    gap: 6px !important;
-    margin-top: 141px !important; /* Space for coin, 7px gap, & Resume button */
+    gap: 8px !important;
+    margin-top: 165px !important; /* Generous clearance buffer so coin NEVER touches card! */
     width: 100% !important;
+  }
+
+  /* About Section Mobile Overflow & Tab Fix */
+  .about-section, .about-layout, .about-tab-col, .tab-nav, .tab-pane, .about-text-block {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    word-break: break-word !important;
+  }
+
+  .tab-nav {
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 6px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .tab-btn {
+    font-size: 0.75rem !important;
+    padding: 6px 12px !important;
+    flex: 1 1 auto !important;
+    text-align: center !important;
+  }
+
+  .about-contact-row {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .contact-pill-tag {
+    font-size: 0.72rem !important;
+    max-width: 100% !important;
+    word-break: break-all !important;
   }
 
   .settled-center-spacer {
