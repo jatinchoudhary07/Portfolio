@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jatin Choudhary &middot; AI &amp; Full-Stack Engineer</title>
+  <meta name="description"
+    content="Portfolio of Jatin Choudhary &ndash; AI &amp; Full-Stack Software Engineer. Generative AI, Agentic AI, React, Django, scalable systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===== LOADER ===== -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-name">
+        <span class="loader-letter" style="--i:0">J</span>
+        <span class="loader-letter" style="--i:1">A</span>
+        <span class="loader-letter" style="--i:2">T</span>
+        <span class="loader-letter" style="--i:3">I</span>
+        <span class="loader-letter" style="--i:4">N</span>
+      </div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loaderBar"></div>
+      </div>
+      <p class="loader-sub">Loading portfolio<span class="loader-dots"></span></p>
+    </div>
+    <div class="loader-overlay-top"></div>
+    <div class="loader-overlay-bottom"></div>
+  </div>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div id="cursor" class="cursor"></div>
+  <div id="cursorTrail" class="cursor-trail"></div>
+  <div id="cursorText" class="cursor-text"></div>
+
+  <!-- ===== PROGRESS BAR ===== -->
+  <div class="scroll-progress-bar" id="scrollProgress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">.jatin<span>PORTFOLIO</span></a>
+    <div class="nav-center">
+      <a href="#hero" class="nav-link" data-text="Home">Home</a>
+      <a href="#about" class="nav-link" data-text="About">About</a>
+      <a href="#projects" class="nav-link" data-text="Projects">Projects</a>
+      <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-time" id="navTime"></span>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero" class="mob-link" data-index="01">Home</a>
+    <a href="#about" class="mob-link" data-index="02">About</a>
+    <a href="#projects" class="mob-link" data-index="03">Projects</a>
+    <a href="#contact" class="mob-link" data-index="04">Contact</a>
+  </div>
+
+  <!-- ===== CANVAS BG ===== -->
+  <canvas id="bgCanvas" class="bg-canvas"></canvas>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero-stage" id="hero">
+    <div class="hero-scroll-track" id="heroScrollTrack">
+      <div class="hero-sticky-viewport" id="heroStickyViewport">
+        <div class="hero-noise"></div>
+        <div class="hero-bg-glow"></div>
+
+        <!-- FRAME 1 (Progress 0.0 - 0.35): Entry Composition -->
+        <div class="oryzo-title-block frame1-el" id="heroTitleStage">
+          <a href="https://www.linkedin.com/in/jatinchoudhary7" target="_blank" rel="noopener noreferrer" class="oryzo-sub-pill"><span class="tag-dot"></span>OPEN TO WORK</a>
+          <h1 class="oryzo-main-title">
+            <span class="title-first">JATIN</span>
+            <span class="title-last">CHOUDHARY<span class="title-accent-dot">.</span></span>
+          </h1>
+          <p class="oryzo-title-subtitle" id="heroTypewriterSubtitle" aria-live="polite">
+            <span class="typewriter-text-wrap">
+              <span class="typewriter-text" id="typewriterText">FULL-STACK DEVELOPER</span><span class="typewriter-cursor" id="typewriterCursor" aria-hidden="true">|</span>
+            </span>
+          </p>
+        </div>
+
+        <!-- CENTER VISUAL DISC (Single Solid 3D Metallic Coin Cylinder) -->
+        <div class="oryzo-circle-stage coin-3d-stage" id="heroPfpStage">
+          <!-- Single Continuous 3D Solid Metallic Coin Edge Wall -->
+          <div class="coin-solid-cylinder" id="coinSolidCylinder"></div>
+
+          <div class="pfp-glow-core"></div>
+
+          <div class="pfp-frame-wrapper coin-front-face">
+            <div class="coin-rim-highlight"></div>
+            <img src="profile copy.jpeg" alt="Jatin Choudhary" class="pfp-img" id="pfpImg" />
+          </div>
+
+          <!-- Resume/CV Button (Shown ONLY in Frame 3 Settled Viewport) -->
+          <a href="Jatin.choudhary_resume.pdf" download="Jatin_Choudhary_Resume.pdf" target="_blank"
+            class="pfp-badge-tag tag-resume" id="tagResume">
+            Resume/CV &darr;
+          </a>
+        </div>
+
+        <!-- BOTTOM LEFT: Blurry/Frosted Card (Frame 1) -->
+        <div class="oryzo-blurry-card frame1-el" id="heroBlurryCard">
+          <div class="card-tag-badge">&lt; AI &times; FULL STACK /&gt;</div>
+          <h2 class="card-title">AI &amp; Full-Stack Engineer</h2>
+          <p class="card-desc">
+            Crafting scalable AI-powered systems &amp; beautiful full-stack digital experiences.
+          </p>
+          <div class="card-actions">
+            <a href="#projects" class="btn-primary magnetic" id="explorBtn">
+              <span>Explore Work</span>
+              <svg width="16" height="16" viewBox="0 0 16 16">
+                <path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="1.5" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a href="#contact" class="btn-ghost magnetic" id="talkBtn">Let's Talk</a>
+          </div>
+          <div class="card-socials">
+            <a href="https://linkedin.com/in/jatinchoudhary7" target="_blank" aria-label="LinkedIn"
+              class="soc-btn magnetic">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="https://github.com/jatinchoudhary07" target="_blank" aria-label="GitHub" class="soc-btn magnetic">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/jatin.chaudhary_?igsh=MWN3ZjlsbzdkM3VucQ==" target="_blank"
+              aria-label="Instagram" class="soc-btn magnetic">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <a href="mailto:jatinchoudhary07.05@gmail.com" aria-label="Email" class="soc-btn magnetic">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.91L12 11.09l9.455-7.269h.91A1.636 1.636 0 0 1 24 5.457z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT MOST CENTER: Overview (Frame 1) -->
+        <div class="oryzo-specs-block frame1-el" id="heroTechSpecs">
+          <div class="specs-label">// WHAT I BUILD</div>
+          <p class="specs-desc">
+            I build full-stack products with AI at the core &mdash; from multi-agent workflows and RAG applications to scalable web platforms.<br /><br />
+            My stack usually lives around Python, Django, FastAPI, React, PostgreSQL and modern LLM tooling.
+          </p>
+          <div class="specs-tags">
+            <span class="spec-tag">PYTHON / DJANGO</span>
+            <span class="spec-tag">REACT / NEXT.JS</span>
+            <span class="spec-tag">GEMINI / RAG</span>
+            <span class="spec-tag">POSTGRES / REDIS</span>
+          </div>
+        </div>
+
+        <!-- FRAME 2 (Progress 0.35 - 0.70): Mid-Scroll 3D Disc Statement Stage -->
+        <div class="frame2-statement frame2-left-text" id="frame2LeftText">
+          <h2>ISN'T JUST A<br /><span class="hl-pink">DEVELOPER.</span></h2>
+          <p class="frame2-sub">BUILDER &middot; THINKER &middot; PROBLEM SOLVER</p>
+        </div>
+
+        <div class="frame2-statement frame2-right-text" id="frame2RightText">
+          <p class="frame2-desc">
+            I build intelligent products that bring together AI, full-stack engineering, and thoughtful design &mdash; from multi-agent workflows and RAG applications to scalable web platforms.<br /><br />
+            I enjoy taking complicated ideas, figuring out how they should work, and turning them into products people can actually use.
+          </p>
+          <div class="frame2-badge">&lt; AI &times; FULL-STACK &times; PRODUCT /&gt;</div>
+        </div>
+
+        <!-- FRAME 3 (Progress 0.70 - 1.0): Settled State Frame (Jatin Choudhary Details & Downloadable Resume) -->
+        <div class="frame3-settled-stage" id="frame3SettledStage">
+          <!-- Header -->
+          <div class="settled-header">
+            <h1 class="settled-name">Jatin Choudhary</h1>
+            <div class="settled-tagline">~ AI &amp; Full-Stack Engineer</div>
+          </div>
+
+          <!-- 3-Column Layout Grid -->
+          <div class="settled-grid-container">
+            <!-- Left Column: Jatin's Authentic Bio & Skills & Contact -->
+            <div class="settled-left-col">
+              <div class="settled-block">
+                <h3 class="settled-block-title">A little about me</h3>
+                <p class="settled-block-desc">
+                  I’m a Full-Stack &amp; AI Engineer focused on building fast, intelligent systems &mdash; from multi-agent AI workflows and Gemini-powered RAG applications to scalable, interactive web products. I enjoy turning complex AI capabilities into intuitive software that people can actually use.
+                </p>
+                <div class="settled-know-more">
+                  <span>Want to know more?</span>
+                  <a href="#about" class="settled-link">Explore more &rarr;</a>
+                </div>
+              </div>
+
+              <div class="settled-block">
+                <h3 class="settled-block-title">Skills</h3>
+                <ul class="settled-skills-list">
+                  <li>Full-Stack Dev (FastAPI / React)</li>
+                  <li>Generative AI &amp; RAG Pipelines</li>
+                  <li>Multi-Agent AI Orchestration</li>
+                  <li>Database &amp; System Architecture</li>
+                </ul>
+                <a href="#skills" data-tab="skills-tab" class="settled-link settled-skills-more-btn">More</a>
+              </div>
+
+              <div class="settled-block">
+                <h3 class="settled-block-title">Let's Talk!</h3>
+                <div class="settled-social-icons">
+                  <a href="https://www.linkedin.com/in/jatinchoudhary7" target="_blank" rel="noopener noreferrer"
+                    aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg></a>
+                  <a href="https://github.com/jatinchoudhary07" target="_blank" aria-label="GitHub"><svg
+                      viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                    </svg></a>
+                  <a href="https://www.instagram.com/jatin.chaudhary_?igsh=MWN3ZjlsbzdkM3VucQ==" target="_blank"
+                    aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg></a>
+                  <a href="mailto:jatinchoudhary07.05@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"
+                      fill="currentColor">
+                      <path
+                        d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.91L12 11.09l9.455-7.269h.91A1.636 1.636 0 0 1 24 5.457z" />
+                    </svg></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Column Spacer (Reserved for centered Profile Circle) -->
+            <div class="settled-center-spacer"></div>
+
+            <!-- Right Column: Stats -->
+            <div class="settled-right-col">
+              <div class="settled-stat-row">
+                <div class="settled-stat-label">PROJECTS COMPLETED</div>
+                <div class="settled-stat-value snum" data-val="7">0+</div>
+              </div>
+              <div class="settled-stat-row">
+                <div class="settled-stat-label">YEARS OF EXPERIENCE</div>
+                <div class="settled-stat-value snum" data-val="1">0+</div>
+              </div>
+              <div class="settled-stat-row">
+                <div class="settled-stat-label">APIs BUILT</div>
+                <div class="settled-stat-value snum" data-val="50">0+</div>
+              </div>
+              <div class="settled-stat-row">
+                <div class="settled-stat-label">AI AGENTS</div>
+                <div class="settled-stat-value snum" data-val="5">0+</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Marquee Strip -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span>Generative AI</span><span class="sep">&middot;</span>
+        <span>Full Stack</span><span class="sep">&middot;</span>
+        <span>Agentic AI</span><span class="sep">&middot;</span>
+        <span>LLMs</span><span class="sep">&middot;</span>
+        <span>RAG Pipelines</span><span class="sep">&middot;</span>
+        <span>Django</span><span class="sep">&middot;</span>
+        <span>React</span><span class="sep">&middot;</span>
+        <span>Next.js</span><span class="sep">&middot;</span>
+        <span>Flutter</span><span class="sep">&middot;</span>
+        <span>Docker</span><span class="sep">&middot;</span>
+        <span>Generative AI</span><span class="sep">&middot;</span>
+        <span>Full Stack</span><span class="sep">&middot;</span>
+        <span>Agentic AI</span><span class="sep">&middot;</span>
+        <span>LLMs</span><span class="sep">&middot;</span>
+        <span>RAG Pipelines</span><span class="sep">&middot;</span>
+        <span>Django</span><span class="sep">&middot;</span>
+        <span>React</span><span class="sep">&middot;</span>
+        <span>Next.js</span><span class="sep">&middot;</span>
+        <span>Flutter</span><span class="sep">&middot;</span>
+        <span>Docker</span><span class="sep">&middot;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about-section" id="about">
+    <div class="section-label" data-aos="fade-right">01 &mdash; Who Am I!</div>
+
+    <div class="about-layout">
+      <div class="about-title-col">
+        <h2 class="big-heading" data-aos="clip-up">
+          <span class="bh-line"><em>Who</em></span>
+          <span class="bh-line" style="--delay:0.1s">Am&nbsp;<span class="stroke-text">I!</span></span>
+        </h2>
+        <div class="about-explore-pill" data-aos="fade-up" style="--delay:0.3s">
+          <span class="tag-dot"></span> Explore
+        </div>
+      </div>
+
+      <div class="about-tab-col">
+        <div class="tab-nav" data-aos="fade-up">
+          <button class="tab-btn active" data-tab="about-me">[ About Me ]</button>
+          <button class="tab-btn" data-tab="education">[ Education ]</button>
+          <button class="tab-btn" data-tab="experience">[ Experience ]</button>
+          <button class="tab-btn" data-tab="skills-tab">[ Skills ]</button>
+        </div>
+
+        <!-- About Me Tab -->
+        <div class="tab-pane active" id="about-me">
+          <div class="about-text-block">
+            <p>I’m Jatin — an <span class="hl-pink">AI &amp; Full-Stack Engineer</span> who turns complex ideas into intelligent, human-centric software. From multi-agent RAG pipelines to scalable backends and pixel-perfect UIs, I love working across the entire stack.</p>
+
+            <p>I’ve built everything from AI video generators and document intelligence engines to federated learning systems — basically, if there’s an interesting problem, I build the solution.</p>
+
+            <p>Beyond the terminal, I’m chasing strength at the <span class="hl-pink">gym</span>, moments through a <span class="hl-pink">camera</span> lens, good <span class="hl-pink">music</span>, and new places to explore.</p>
+
+            <p class="about-repeat-line"><span class="hl-pink">CODE. BUILD. BREAK. LEARN. TRAVEL. REPEAT.</span></p>
+
+            <div class="about-contact-row">
+              <a href="mailto:jatinchoudhary07.05@gmail.com" class="contact-pill-tag">jatinchoudhary07.05@gmail.com</a>
+              <span class="contact-pill-tag">+91-6375276531</span>
+              <span class="contact-pill-tag">Jaipur, India</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education Tab -->
+        <div class="tab-pane" id="education">
+          <div class="exp-list">
+            <div class="exp-item">
+              <div class="exp-num">01</div>
+              <div class="exp-body">
+                <h3>JK Lakshmipat University</h3>
+                <span class="exp-role">B.Tech &ndash; Computer Science &amp; Engineering</span>
+                <div class="exp-meta-row">
+                  <span>Jaipur, India</span>
+                  <span>Aug 2022 &ndash; Jun 2026</span>
+                </div>
+                <p class="exp-detail">Data Structures &middot; Algorithms &middot; DBMS &middot; Computer Networks
+                  &middot; Software Engineering &middot; Machine Learning</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience Tab -->
+        <div class="tab-pane" id="experience">
+          <div class="exp-list">
+            <div class="exp-item">
+              <div class="exp-num">01</div>
+              <div class="exp-body">
+                <h3>The Janki</h3>
+                <span class="exp-role">Software Development Intern</span>
+                <div class="exp-meta-row">
+                  <span>Jaipur, India</span>
+                  <span>Jan 2026 &ndash; Jul 2026</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Orchestrated 5+ Gemini Flash AI agents with RAG pipelines, delivering responses under
+                    250ms</li>
+                  <li>Automated invoice extraction &amp; email parsing via Gemini Vision, reducing manual work by ~80%
+                  </li>
+                  <li>Architected 9-module Django REST backend with 50+ endpoints, PostgreSQL, Redis &amp; Celery</li>
+                  <li>Built Next.js / React dashboard with JWT sessions &amp; real-time analytics</li>
+                </ul>
+                <p class="exp-tech-tags"><span>Django</span><span>Next.js</span><span>Gemini</span><span>RAG</span><span>PostgreSQL</span><span>Redis</span></p>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-num">02</div>
+              <div class="exp-body">
+                <h3>The YP Foundation</h3>
+                <span class="exp-role">Consultant (Student Leader)</span>
+                <div class="exp-meta-row">
+                  <span>Hybrid</span>
+                  <span>Sep 2024 &ndash; Apr 2025</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Conducted awareness campaigns and created digital resources for social inclusion.</li>
+                  <li>Led campus teams and improved engagement through digital outreach.</li>
+                </ul>
+                <p class="exp-tech-tags"><span>Digital Outreach</span><span>Team Leadership</span><span>Content
+                    Strategy</span></p>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-num">03</div>
+              <div class="exp-body">
+                <h3>JK Lakshmipat University</h3>
+                <span class="exp-role">Social Media Intern</span>
+                <div class="exp-meta-row">
+                  <span>Jaipur, India</span>
+                  <span>Jul 2024 &ndash; Dec 2024</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Managed and scheduled online content to enhance digital presence.</li>
+                  <li>Promoted university programs and handled audience engagement.</li>
+                </ul>
+                <p class="exp-tech-tags"><span>Social Media</span><span>Content Scheduling</span><span>Audience
+                    Engagement</span></p>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-num">04</div>
+              <div class="exp-body">
+                <h3>Tag11</h3>
+                <span class="exp-role">Frontend Development Intern</span>
+                <div class="exp-meta-row">
+                  <span>Remote</span>
+                  <span>May 2024 &ndash; Jul 2024</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Built 12+ responsive React.js + Tailwind CSS web interfaces with 20+ REST APIs</li>
+                  <li>Reduced UI development time by 30% through reusable component architecture</li>
+                </ul>
+                <p class="exp-tech-tags"><span>React.js</span><span>Tailwind CSS</span><span>REST
+                    APIs</span><span>TypeScript</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Tab -->
+        <div class="tab-pane" id="skills-tab">
+          <div class="skills-categories">
+            <div class="sk-cat">
+              <div class="sk-cat-label">Languages</div>
+              <div class="sk-tags">
+                <span>Python</span><span>JavaScript</span><span>TypeScript</span><span>SQL</span><span>Dart</span><span>C/C++</span>
+              </div>
+            </div>
+            <div class="sk-cat">
+              <div class="sk-cat-label">Frameworks</div>
+              <div class="sk-tags"><span>React</span><span>Next.js</span><span>Django</span><span>FastAPI</span><span>Flutter</span><span>Node.js</span></div>
+            </div>
+            <div class="sk-cat">
+              <div class="sk-cat-label">AI / ML</div>
+              <div class="sk-tags"><span>Generative AI</span><span>Agentic
+                  AI</span><span>LLMs</span><span>RAG</span><span>LangChain</span><span>Gemini</span><span>Veo</span><span>OCR</span></div>
+            </div>
+            <div class="sk-cat">
+              <div class="sk-cat-label">Cloud &amp; DevOps</div>
+              <div class="sk-tags"><span>Docker</span><span>AWS
+                  EC2</span><span>Redis</span><span>Celery</span><span>PostgreSQL</span><span>Git</span><span>CI/CD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT I DO / PROJECTS ===== -->
+  <section class="projects-section" id="projects">
+    <div class="section-label" data-aos="fade-right">02 &mdash; What I Do!</div>
+
+    <!-- Big watermark text that changes on scroll -->
+    <div class="proj-watermark" id="projWatermark">
+      <span id="projWatermarkText">AI</span>
+    </div>
+
+    <!-- Section heading -->
+    <div class="proj-stack-header">
+      <h2 class="big-heading" data-aos="clip-up">
+        <span class="bh-line"><span class="stroke-text">What</span></span>
+        <span class="bh-line" style="--delay:0.1s">I&nbsp;<em>Do!</em></span>
+      </h2>
+      <div class="proj-scroll-hint" data-aos="fade-up" style="--delay:0.3s">
+        <span class="tag-dot"></span> Scroll through projects &#8595;
+      </div>
+    </div>
+
+    <!-- Stacked project cards -->
+    <div class="proj-stack" id="projStack">
+
+      <article class="psc" data-cat="AI / GenAI" data-catshort="AI" data-idx="01">
+        <div class="psc-inner">
+          <div class="psc-left">
+            <div class="psc-meta-row">
+              <span class="psc-num">01</span>
+              <span class="psc-cat-badge">AI / GenAI</span>
+            </div>
+            <h3 class="psc-title">CampaignOS</h3>
+            <p class="psc-subtitle">AI Video Creation Operating System</p>
+            <p class="psc-desc">AI-powered SaaS for marketing automation, multimodal content creation &amp; storyboard
+              generation via Gemini and Veo. Cut server-side video costs by 100% using FFmpeg WebAssembly.</p>
+            <div class="psc-tech"><span>React</span><span>TypeScript</span><span>Gemini</span><span>Veo</span><span>Vite</span></div>
+            <div class="psc-links">
+              <a href="https://campaignos1.netlify.app" target="_blank" rel="noopener noreferrer"
+                class="psc-preview-btn">
+                <span>Live Preview</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 12L12 4M12 4H6M12 4V10" />
+                </svg>
+              </a>
+              <a href="https://github.com/jatinchoudhary07/CampaignOS" target="_blank" rel="noopener noreferrer"
+                class="psc-gh-link">View on GitHub &rarr;</a>
+            </div>
+          </div>
+          <div class="psc-right psc-img-right psc-right-campaignos">
+            <img src="CampaignOS.png" alt="CampaignOS Dashboard" class="psc-img psc-img-desktop" />
+            <div class="psc-bg-num">01</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="psc" data-cat="AI / GenAI" data-catshort="AI" data-idx="02">
+        <div class="psc-inner">
+          <div class="psc-left">
+            <div class="psc-meta-row">
+              <span class="psc-num">02</span>
+              <span class="psc-cat-badge">AI / GenAI</span>
+            </div>
+            <h3 class="psc-title">AI Document Intelligence</h3>
+            <p class="psc-subtitle">Resume &amp; Document Intelligence Platform</p>
+            <p class="psc-desc">Document intelligence with semantic search, vector search, RAG &amp; OCR achieving 95%
+              retrieval accuracy. Reduced resume screening time by 70% across enterprise evaluation pipelines.</p>
+            <div class="psc-tech"><span>Python</span><span>OCR</span><span>LLMs</span><span>NLP</span><span>RAG</span>
+            </div>
+            <div class="psc-links">
+              <a href="https://github.com/jatinchoudhary07/Smart-Document-QA---Agentic-Research-Platform"
+                target="_blank" rel="noopener noreferrer" class="psc-gh-link">View on GitHub &rarr;</a>
+            </div>
+          </div>
+          <div class="psc-right psc-img-right psc-right-qa">
+            <img src="AI_Document_Intelligence.png" alt="AI Document Intelligence Interface"
+              class="psc-img psc-img-desktop" />
+            <div class="psc-bg-num">02</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="psc" data-cat="Full-Stack" data-catshort="Full Stack" data-idx="03">
+        <div class="psc-inner">
+          <div class="psc-left">
+            <div class="psc-meta-row">
+              <span class="psc-num">03</span>
+              <span class="psc-cat-badge">Full-Stack</span>
+            </div>
+            <h3 class="psc-title">Shori &ndash; Jewellery ERP</h3>
+            <p class="psc-subtitle">Enterprise E-Commerce Operating System</p>
+            <p class="psc-desc">9-module Django REST backend with 50+ JWT-secured endpoints. Next.js dashboard with
+              Excel processing (1,000+ records), real-time analytics &amp; Celery async queues.</p>
+            <div class="psc-tech"><span>Django</span><span>Next.js</span><span>PostgreSQL</span><span>Redis</span><span>JWT</span></div>
+            <div class="psc-links">
+              <span class="psc-private-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Private Enterprise Repository
+              </span>
+            </div>
+          </div>
+          <div class="psc-right psc-img-right psc-right-shori">
+            <img src="Shori.jpg" alt="Shori Jewellery ERP Dashboard" class="psc-img psc-img-desktop" />
+            <div class="psc-bg-num">03</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="psc" data-cat="Full-Stack" data-catshort="Full Stack" data-idx="04">
+        <div class="psc-inner">
+          <div class="psc-left">
+            <div class="psc-meta-row">
+              <span class="psc-num">04</span>
+              <span class="psc-cat-badge">Full-Stack</span>
+            </div>
+            <h3 class="psc-title">BridgeWorks</h3>
+            <p class="psc-subtitle">Unified Enterprise ERP &amp; Workforce OS</p>
+            <p class="psc-desc">All-in-one unified enterprise platform combining double-entry financial accounting,
+              real-time GST compliance, geofenced HR operations, and predictive logistics reconciliation into a single
+              reactive web suite.</p>
+            <div class="psc-tech">
+              <span>React</span><span>Vite</span><span>Django</span><span>Python</span><span>Material
+                UI</span><span>WebSockets</span><span>Recharts</span>
+            </div>
+            <div class="psc-links">
+              <a href="https://bridgeworks001.netlify.app" target="_blank" rel="noopener noreferrer"
+                class="psc-preview-btn">
+                <span>Live Preview</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 12L12 4M12 4H6M12 4V10" />
+                </svg>
+              </a>
+              <a href="https://github.com/jatinchoudhary07/Bridgeworks" target="_blank" rel="noopener noreferrer"
+                class="psc-gh-link">View on GitHub &rarr;</a>
+            </div>
+          </div>
+          <div class="psc-right psc-img-right psc-right-bridgeworks">
+            <img src="BridgeWorks.png" alt="BridgeWorks Enterprise Dashboard" class="psc-img psc-img-desktop" />
+            <div class="psc-bg-num">04</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="psc" data-cat="Full-Stack" data-catshort="Full Stack" data-idx="05">
+        <div class="psc-inner">
+          <div class="psc-left">
+            <div class="psc-meta-row">
+              <span class="psc-num">05</span>
+              <span class="psc-cat-badge">Full-Stack</span>
+            </div>
+            <h3 class="psc-title">Nomster POS System</h3>
+            <p class="psc-subtitle">Real-Time Restaurant Management &amp; Multi-Tenant POS Platform</p>
+            <p class="psc-desc">High-performance, multi-tenant POS platform featuring real-time WebSocket state
+              synchronization, QR scan-to-order table sessions, automated staff attendance &amp; contract management,
+              and multi-currency i18n menu management with sub-50ms latency.</p>
+            <div class="psc-tech"><span>FastAPI</span><span>React</span><span>Redis
+                Pub/Sub</span><span>WebSockets</span><span>SQLModel</span><span>PostgreSQL</span><span>Tailwind
+                CSS</span><span>JWT Auth</span></div>
+            <div class="psc-links">
+              <span class="psc-private-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Private Commercial Repository
+              </span>
+            </div>
+          </div>
+          <div class="psc-right psc-img-right psc-right-nomster">
+            <img src="Nomster.png" alt="Nomster POS System Interface" class="psc-img psc-img-desktop" />
+            <div class="psc-bg-num psc-bg-num-dark">05</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="psc" data-cat="Machine Learning" data-catshort="ML" data-idx="06">
+        <div class="psc-inner">
+          <div class="psc-left">
+            <div class="psc-meta-row">
+              <span class="psc-num">06</span>
+              <span class="psc-cat-badge">Machine Learning</span>
+            </div>
+            <h3 class="psc-title">Federated Learning Healthcare</h3>
+            <p class="psc-subtitle">Privacy-Preserving Distributed ML</p>
+            <p class="psc-desc">Distributed ML framework with federated optimization across 5 hospital nodes without raw
+              data sharing. 94% classification accuracy with zero patient data leakage.</p>
+            <div class="psc-tech"><span>Python</span><span>TensorFlow</span><span>Federated Learning</span></div>
+            <div class="psc-links">
+              <a href="https://github.com/jatinchoudhary07/Federated-Learning-for-healthcare" target="_blank"
+                rel="noopener noreferrer" class="psc-gh-link">View on GitHub &rarr;</a>
+            </div>
+          </div>
+          <div class="psc-right psc-img-right psc-right-federated">
+            <img src="Federated_Learning.jpg" alt="Federated Learning Healthcare Dashboard"
+              class="psc-img psc-img-desktop" />
+            <div class="psc-bg-num">06</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="psc" data-cat="Mobile" data-catshort="Mobile" data-idx="07">
+        <div class="psc-inner">
+          <div class="psc-left">
+            <div class="psc-meta-row">
+              <span class="psc-num">07</span>
+              <span class="psc-cat-badge">Mobile</span>
+            </div>
+            <h3 class="psc-title">JKLU Eezy</h3>
+            <p class="psc-subtitle">Smart Campus Super-App</p>
+            <p class="psc-desc">Cross-platform app unifying 6 campus services with REST APIs, RBAC &amp; offline sync
+              for 1,000+ active users. JWT auth gateway, PDF rendering &amp; 40+ interactive screens.</p>
+            <div class="psc-tech"><span>Flutter</span><span>Dart</span><span>REST APIs</span><span>JWT</span></div>
+            <div class="psc-links">
+              <a href="https://jatinchoudhary07.github.io/JKLUEesy_frontend/" target="_blank" rel="noopener noreferrer"
+                class="psc-preview-btn">
+                <span>Live Preview</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 12L12 4M12 4H6M12 4V10" />
+                </svg>
+              </a>
+              <a href="https://github.com/jatinchoudhary07/jklu_eezy" target="_blank" rel="noopener noreferrer"
+                class="psc-gh-link">View on GitHub &rarr;</a>
+            </div>
+          </div>
+          <div class="psc-right psc-img-right psc-right-jklu">
+            <div class="psc-triple-mobile">
+              <img src="JKLUeezy1.png" alt="JKLU Eezy Home Screen" class="psc-mob-img psc-mob-1" />
+              <img src="jklueezy2.png" alt="JKLU Eezy Dashboard Screen" class="psc-mob-img psc-mob-2" />
+              <img src="jklueezy3.png" alt="JKLU Eezy Feature Screen" class="psc-mob-img psc-mob-3" />
+            </div>
+            <div class="psc-bg-num">07</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Mobile carousel dots & swipe hint (hidden on desktop via CSS) -->
+    <div class="mob-carousel-footer" id="mobCarouselFooter" aria-hidden="true">
+      <div class="mob-carousel-dots" id="mobCarouselDots"></div>
+      <p class="mob-swipe-hint" id="mobSwipeHint">swipe to explore</p>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact-section" id="contact">
+    <div class="section-label" data-aos="fade-right">03 &mdash; Let's Work Together</div>
+
+    <div class="contact-big" data-aos="clip-up">
+      <div class="cbig-block">
+        <p class="cbig-line" style="--delay:0s"><span>Want to</span></p>
+        <p class="cbig-line" style="--delay:0.08s"><span>start</span></p>
+        <p class="cbig-line cbig-italic" style="--delay:0.16s"><span>a new</span></p>
+        <p class="cbig-line cbig-proj-row" style="--delay:0.24s">
+          <span class="cbig-accent">PROJECT</span><span class="cbig-q">&nbsp;?</span>
+        </p>
+        <p class="cbig-sub" data-aos="fade-up" style="--delay:0.35s">Or just say hello .</p>
+      </div>
+    </div>
+
+    <div class="contact-body">
+      <div class="contact-left" data-aos="fade-right" style="--delay:0.1s">
+        <h3 class="contact-collab">Trying to<br />create<br /><span class="accent-pink-txt">together!</span></h3>
+        <a href="https://www.linkedin.com/in/jatinchoudhary7" target="_blank" rel="noopener noreferrer"
+          class="contact-connect-btn">. Let's Connect</a>
+        <div class="contact-info">
+          <div>jatinchoudhary07.05@gmail.com</div>
+          <div>+91-6375276531</div>
+          <div><a href="https://www.linkedin.com/in/jatinchoudhary7" target="_blank"
+              rel="noopener noreferrer">linkedin.com/in/jatinchoudhary7</a></div>
+          <div><a href="https://www.instagram.com/jatin.chaudhary_?igsh=MWN3ZjlsbzdkM3VucQ=="
+              target="_blank">instagram.com/jatin.chaudhary_</a></div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" data-aos="fade-left" style="--delay:0.2s">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="nameInput">Your Name</label>
+            <input type="text" id="nameInput" placeholder="Jatin Choudhary" required />
+          </div>
+          <div class="form-field">
+            <label for="emailInput">Your Email</label>
+            <input type="email" id="emailInput" placeholder="hello@example.com" required />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="msgInput">Message</label>
+          <textarea id="msgInput" rows="5" placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">
+          <span>Let's Go!</span>
+          <span class="submit-arrow">&rarr;</span>
+        </button>
+        <p class="form-success" id="formSuccess" style="display:none">Message sent! I'll get back to you within 24
+          hours.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      <span>&copy; 2026</span>
+      <span class="footer-logo">.jatin<span>PORTFOLIO</span></span>
+    </div>
+    <div class="footer-center">Built with &hearts; &amp; a lot of &#9749;</div>
+    <div class="footer-right">
+      <a href="https://linkedin.com/in/jatinchoudhary7" target="_blank">LinkedIn</a>
+      <a href="https://github.com/jatinchoudhary07" target="_blank">GitHub</a>
+      <a href="mailto:jatinchoudhary07.05@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
