@@ -3681,21 +3681,25 @@ em {
   }
 }
 
-/* ── Touch / mobile: restore cursor & hide canvas overlay ── */
-@media (hover: none) and (pointer: coarse) {
+/* ── Touch / mobile: restore cursor & hide custom cursor overlay completely ── */
+@media (hover: none) and (pointer: coarse), (max-width: 992px) {
   body,
   button,
-  a {
-    cursor: auto;
+  a,
+  input,
+  textarea {
+    cursor: auto !important;
   }
 
   .cursor,
   .cursor-trail,
   .cursor-text {
     display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 
-  /* Canvas bg is fixed and heavy — reduce opacity on mobile for perf */
   .bg-canvas {
     opacity: 0.25;
   }

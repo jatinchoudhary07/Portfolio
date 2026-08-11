@@ -362,54 +362,69 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===================================================
   // CUSTOM CURSOR
   // ===================================================
-  const cursor     = document.getElementById('cursor');
+  // ===================================================
+  // CUSTOM CURSOR (Desktop only — disabled on touch/mobile)
+  // ===================================================
+  const cursor      = document.getElementById('cursor');
   const cursorTrail = document.getElementById('cursorTrail');
   const cursorText  = document.getElementById('cursorText');
-  let mx = 0, my = 0, tx = 0, ty = 0;
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 992);
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
-    cursorText.style.left = mx + 'px';
-    cursorText.style.top  = (my + 30) + 'px';
-  });
+  if (isTouchDevice && cursor && cursorTrail) {
+    cursor.style.display = 'none';
+    cursorTrail.style.display = 'none';
+    if (cursorText) cursorText.style.display = 'none';
+  } else if (cursor && cursorTrail) {
+    let mx = -100, my = -100, tx = -100, ty = -100;
 
-  (function trailLoop() {
-    tx += (mx - tx) * 0.1;
-    ty += (my - ty) * 0.1;
-    cursorTrail.style.left = tx + 'px';
-    cursorTrail.style.top  = ty + 'px';
-    requestAnimationFrame(trailLoop);
-  })();
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX;
+      my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+      if (cursorText) {
+        cursorText.style.left = mx + 'px';
+        cursorText.style.top  = (my + 30) + 'px';
+      }
+    });
 
-  document.querySelectorAll('a, button, .proj-card, .scard, .exp-item, .tab-btn, .ptab-btn').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width  = '50px';
-      cursor.style.height = '50px';
-      cursor.style.background = 'transparent';
-      cursor.style.border = '1.5px solid var(--pink, #E85B64)';
-      cursorTrail.style.opacity = '0';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width  = '10px';
-      cursor.style.height = '10px';
-      cursor.style.background = '#E85B64';
-      cursor.style.border = 'none';
-      cursorTrail.style.opacity = '0.45';
-    });
-  });
+    (function trailLoop() {
+      tx += (mx - tx) * 0.1;
+      ty += (my - ty) * 0.1;
+      cursorTrail.style.left = tx + 'px';
+      cursorTrail.style.top  = ty + 'px';
+      requestAnimationFrame(trailLoop);
+    })();
 
-  document.querySelectorAll('.proj-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      cursorText.textContent = 'VIEW';
-      cursorText.style.opacity = '1';
+    document.querySelectorAll('a, button, .proj-card, .scard, .exp-item, .tab-btn, .ptab-btn').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width  = '50px';
+        cursor.style.height = '50px';
+        cursor.style.background = 'transparent';
+        cursor.style.border = '1.5px solid var(--pink, #E85B64)';
+        cursorTrail.style.opacity = '0';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width  = '10px';
+        cursor.style.height = '10px';
+        cursor.style.background = '#E85B64';
+        cursor.style.border = 'none';
+        cursorTrail.style.opacity = '0.45';
+      });
     });
-    card.addEventListener('mouseleave', () => {
-      cursorText.style.opacity = '0';
+
+    document.querySelectorAll('.proj-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        if (cursorText) {
+          cursorText.textContent = 'VIEW';
+          cursorText.style.opacity = '1';
+        }
+      });
+      card.addEventListener('mouseleave', () => {
+        if (cursorText) cursorText.style.opacity = '0';
+      });
     });
-  });
+  }
 
 
   // ===================================================
