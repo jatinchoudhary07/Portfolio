@@ -181,28 +181,28 @@ document.addEventListener('DOMContentLoaded', () => {
       if (pfpStage) {
         pfpStage.style.left = '50%';
 
-        // Top position: Frame 1 (46%) -> Frame 2 (38%) -> Frame 3 (20%)
+        // Top position: Frame 1 (46%) -> Frame 2 (40%) -> Frame 3 (20%)
         let topPct;
         if (p < 0.30) {
           topPct = 46;
         } else if (p < 0.60) {
           let t = (p - 0.30) / 0.30;
-          topPct = (1 - t) * 46 + t * 38;
+          topPct = (1 - t) * 46 + t * 40;
         } else {
           let t = (p - 0.60) / 0.40;
-          topPct = (1 - t) * 38 + t * 20;
+          topPct = (1 - t) * 40 + t * 20;
         }
         pfpStage.style.top = `${topPct.toFixed(2)}%`;
 
-        // Scale: Frame 1 (0.72) -> Frame 2 grows larger (0.88) -> Frame 3 (0.50)
+        // Scale: Frame 1 (0.72) -> Frame 2 (0.78) -> Frame 3 (0.50)
         let mobScale;
         if (p < 0.30) {
-          mobScale = 0.72 + (p * 0.53); // Grows slightly larger on 2nd scroll!
+          mobScale = 0.72 + (p * 0.20);
         } else if (p < 0.60) {
-          mobScale = 0.88; // Enlarged profile in Frame 2!
+          mobScale = 0.78;
         } else {
           let t = (p - 0.60) / 0.40;
-          mobScale = (1 - t) * 0.88 + t * 0.50;
+          mobScale = (1 - t) * 0.78 + t * 0.50;
         }
 
         // NO 3D ROTATION ON MOBILE: Flat, steady, smooth photo!

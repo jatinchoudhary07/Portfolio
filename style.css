@@ -1572,11 +1572,11 @@ button {
   }
 
   .frame2-left-text {
-    top: 18vh !important;
+    top: 14vh !important;
   }
 
   .frame2-left-text h2 {
-    font-size: clamp(1.8rem, 8vw, 2.6rem) !important;
+    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
     line-height: 1.1 !important;
   }
 
@@ -1586,18 +1586,19 @@ button {
   }
 
   .frame2-right-text {
-    top: 68vh !important;
+    top: 76vh !important;
     text-align: center !important;
   }
 
   .frame2-desc {
-    font-size: 0.82rem !important;
-    line-height: 1.6 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
+    color: rgba(255, 255, 255, 0.88) !important;
   }
 
   .frame2-badge {
-    font-size: 0.75rem !important;
-    margin-top: 10px !important;
+    font-size: 0.72rem !important;
+    margin-top: 8px !important;
   }
 
   /* Frame 3 Settled Stage on Mobile — Clean Top Anchor matching screenshot */
