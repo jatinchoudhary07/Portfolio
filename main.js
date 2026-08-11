@@ -131,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollY = currentY;
   }, { passive: true });
 
+  let initialCoinFlipDone = false;
+
   function updateHeroScroll() {
     if (!heroScrollTrack) return;
     const rect = heroScrollTrack.getBoundingClientRect();
@@ -144,6 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = window.innerWidth <= 992;
 
+    // Once user reaches Frame 3 for the first time, mark initial coin flip as permanently DONE until page refresh
+    if (p >= 0.65) {
+      initialCoinFlipDone = true;
+    }
+
     // 1. Frame 1 Elements (Title, Blurry Card, Specs) fade out (0.0 -> 0.28)
     const f1Opacity = isMobile ? Math.max(0, 1 - p * 4.2) : Math.max(0, 1 - p * 3.3);
     document.querySelectorAll('.frame1-el').forEach(el => {
@@ -156,9 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.pointerEvents = f1Opacity > 0.3 ? 'auto' : 'none';
     });
 
-    // 2. Frame 2 Statement Elements (ONLY active when scrolling DOWN)
+    // 2. Frame 2 Statement Elements (ONLY active on INITIAL FIRST scroll down from home page)
     let f2Opacity = 0;
-    if (!isScrollingUp) {
+    if (!initialCoinFlipDone && !isScrollingUp) {
       if (isMobile) {
         if (p >= 0.20 && p <= 0.50) {
           const distFromPeak = Math.abs(p - 0.35);
@@ -202,9 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
         topPct  = 48 + (p * 2);
       }
 
-      // 3D Coin Rotation Dynamics: ACTIVE ONLY WHEN SCROLLING DOWN (Flat steady coin when scrolling up)
+      // 3D Coin Rotation Dynamics: ACTIVE ONLY ON INITIAL FIRST SCROLL DOWN (Never re-triggers on subsequent scrolls)
       let rotX = 0, rotY = 0, rotZ = 0;
-      if (!isScrollingUp) {
+      if (!initialCoinFlipDone && !isScrollingUp) {
         rotX = Math.sin(p * Math.PI) * 72;
         rotY = Math.sin(p * Math.PI) * -24;
         rotZ = p * 360;
