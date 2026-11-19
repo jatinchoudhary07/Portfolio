@@ -630,84 +630,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ===================================================
-  // PROJECTS — WATERMARK HEADING CHANGES ON SCROLL
+  // PROJECT FOLDERS — click opens the project sheet
   // ===================================================
-  const projCards   = document.querySelectorAll('.psc');
-  const projWmark   = document.getElementById('projWatermark');
-  const wmarkText   = document.getElementById('projWatermarkText');
-  let currentCat    = '';
+  (function initProjectModal() {
+    const folders = document.querySelectorAll('.fp-folder');
+    if (!folders.length) return;
 
-  if (projCards.length && wmarkText) {
-    const cardObs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const cat = entry.target.dataset.catshort || 'AI';
-          if (cat !== currentCat) {
-            currentCat = cat;
-            // Fade out, change text, fade in
-            projWmark.classList.add('fading');
-            setTimeout(() => {
-              wmarkText.textContent = cat;
-              projWmark.classList.remove('fading');
-            }, 280);
-          }
-        }
+    const modal = document.createElement('div');
+    modal.className = 'fpm';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.innerHTML =
+      '<div class="fpm-card">' +
+        '<div class="fpm-media"></div>' +
+        '<div class="fpm-info">' +
+          '<div class="fpm-top"><span class="fpm-count"></span><button class="fpm-close" aria-label="Close">Close &times;</button></div>' +
+          '<div class="fpm-body"></div>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(modal);
+    const media = modal.querySelector('.fpm-media');
+    const body = modal.querySelector('.fpm-body');
+    const info = modal.querySelector('.fpm-info');
+    let lastFocus = null;
+    let byKey = false;
+
+    function open(folder) {
+      const card = folder.closest('.fp-card');
+      const detail = card.querySelector('.fp-detail');
+      const q = s => detail.querySelector(s);
+      const cards = Array.from(document.querySelectorAll('.fp-card'));
+      const idx = String(cards.indexOf(card) + 1).padStart(2, '0');
+      modal.querySelector('.fpm-count').textContent = idx + ' / ' + String(cards.length).padStart(2, '0');
+      media.innerHTML = q('.fpd-shots').innerHTML + '<span class="fpm-num">' + idx + '</span>';
+      media.style.background = detail.dataset.bg;
+      media.classList.toggle('light', detail.dataset.light === '1');
+      media.classList.toggle('phones', q('.fpd-shots').children.length > 1);
+      body.innerHTML =
+        '<div class="fpd-cat">' + q('.fpd-cat').innerHTML + '</div>' +
+        '<h3 class="fpd-title">' + q('.fpd-title').innerHTML + '</h3>' +
+        '<p class="fpd-sub">' + q('.fpd-sub').innerHTML + '</p>' +
+        '<div class="fpd-rule"></div>' +
+        '<p class="fpd-desc">' + q('.fpd-desc').innerHTML + '</p>' +
+        '<div class="fpd-chips">' + q('.fpd-chips').innerHTML + '</div>' +
+        '<div class="fpd-links">' + q('.fpd-links').innerHTML + '</div>';
+      media.scrollTop = 0; info.scrollTop = 0;
+      lastFocus = folder;
+      modal.classList.add('show');
+      document.body.classList.add('fpm-lock');
+      modal.querySelector('.fpm-close').focus({ preventScroll: true });
+    }
+    function close() {
+      modal.classList.remove('show');
+      document.body.classList.remove('fpm-lock');
+      if (lastFocus && byKey) lastFocus.focus({ preventScroll: true });
+      else if (lastFocus) lastFocus.blur();
+    }
+
+    folders.forEach(f => {
+      f.addEventListener('click', e => { if (!e.target.closest('a')) { byKey = false; open(f); } });
+      f.addEventListener('keydown', e => {
+        if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a')) { e.preventDefault(); byKey = true; open(f); }
       });
-    }, { threshold: 0.45, rootMargin: '-80px 0px -20% 0px' });
+    });
+    modal.addEventListener('click', e => { if (e.target === modal || e.target.closest('.fpm-close')) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('show')) close(); });
 
-    projCards.forEach(card => cardObs.observe(card));
-  }
-
-
-  // ===================================================
-  // MOBILE PROJECT CARDS — Staggered reveal on scroll
-  // (sticky stack: cards revealed via IntersectionObserver)
-  // ===================================================
-  (function initMobileCardReveal() {
-    if (window.innerWidth > 768) return; // desktop handles its own scroll
-
-    const cards = Array.from(document.querySelectorAll('.psc'));
-    if (!cards.length) return;
-
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('mob-revealed');
-          obs.unobserve(entry.target);
-        }
+    // custom cursor ring over the popup's links/buttons
+    const cur = document.getElementById('cursor');
+    const trail = document.getElementById('cursorTrail');
+    if (cur && trail) {
+      modal.addEventListener('mouseover', e => {
+        const on = !!e.target.closest('a, button');
+        cur.classList.toggle('hover', on);
+        trail.classList.toggle('hover', on);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    cards.forEach(card => obs.observe(card));
-
-    // Re-run on resize to desktop
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
-        cards.forEach(c => c.classList.remove('mob-revealed'));
-        obs.disconnect();
-      }
-    }, { once: true, passive: true });
+      modal.addEventListener('mouseleave', () => { cur.classList.remove('hover'); trail.classList.remove('hover'); });
+    }
   })();
-
-
-  // ===================================================
-  // 3D TILT ON STACKING PROJECT CARDS (desktop only)
-  // ===================================================
-  if (window.innerWidth > 768) {
-  document.querySelectorAll('.psc').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r  = card.getBoundingClientRect();
-      const x  = (e.clientX - r.left) / r.width  - 0.5;
-      const y  = (e.clientY - r.top)  / r.height - 0.5;
-      card.style.transform = `perspective(1200px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateZ(6px)`;
-      card.style.transition = 'box-shadow 0.3s, border-color 0.3s';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-      card.style.transition = 'all 0.5s var(--ease-out)';
-    });
-  });
-  }
 
 
   // ===================================================

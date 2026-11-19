@@ -484,11 +484,6 @@
   <section class="projects-section" id="projects">
     <div class="section-label" data-aos="fade-right">02 &mdash; What I Do!</div>
 
-    <!-- Big watermark text that changes on scroll -->
-    <div class="proj-watermark" id="projWatermark">
-      <span id="projWatermarkText">AI</span>
-    </div>
-
     <!-- Section heading -->
     <div class="proj-stack-header">
       <h2 class="big-heading" data-aos="clip-up">
@@ -496,237 +491,180 @@
         <span class="bh-line" style="--delay:0.1s">I&nbsp;<em>Do!</em></span>
       </h2>
       <div class="proj-scroll-hint" data-aos="fade-up" style="--delay:0.3s">
-        <span class="tag-dot"></span> Scroll through projects &#8595;
+        <span class="tag-dot"></span> Click a folder to view the project
       </div>
     </div>
 
-    <!-- Stacked project cards -->
-    <div class="proj-stack" id="projStack">
-
-      <article class="psc" data-cat="AI / GenAI" data-catshort="AI" data-idx="01">
-        <div class="psc-inner">
-          <div class="psc-left">
-            <div class="psc-meta-row">
-              <span class="psc-num">01</span>
-              <span class="psc-cat-badge">AI / GenAI</span>
-            </div>
-            <h3 class="psc-title">CampaignOS</h3>
-            <p class="psc-subtitle">AI Video Creation Operating System</p>
-            <p class="psc-desc">AI-powered SaaS for marketing automation, multimodal content creation &amp; storyboard
-              generation via Gemini and Veo. Cut server-side video costs by 100% using FFmpeg WebAssembly.</p>
-            <div class="psc-tech"><span>React</span><span>TypeScript</span><span>Gemini</span><span>Veo</span><span>Vite</span></div>
-            <div class="psc-links">
-              <a href="https://campaignos1.netlify.app" target="_blank" rel="noopener noreferrer"
-                class="psc-preview-btn">
-                <span>Live Preview</span>
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 12L12 4M12 4H6M12 4V10" />
-                </svg>
-              </a>
-              <a href="https://github.com/jatinchoudhary07/CampaignOS" target="_blank" rel="noopener noreferrer"
-                class="psc-gh-link">View on GitHub &rarr;</a>
-            </div>
-          </div>
-          <div class="psc-right psc-img-right psc-right-campaignos">
-            <img src="CampaignOS.png" alt="CampaignOS Dashboard" class="psc-img psc-img-desktop" />
-            <div class="psc-bg-num">01</div>
+    <!-- Folder-style project cards -->
+    <div class="fp-grid" id="projGrid">
+      <article class="fp-card" data-aos="fade-up" style="--delay:0.00s">
+        <div class="fp-folder" tabindex="0">
+          <div class="fp-back"></div>
+          <div class="fp-paper fp-p4"><em>Highlight</em><strong>100%</strong><p>less server-side video cost</p></div>
+          <div class="fp-paper fp-p3"><em>Tech stack</em><div class="fp-chips"><span>React</span><span>TypeScript</span><span>Gemini</span><span>Veo</span><span>Vite</span></div></div>
+          <div class="fp-paper fp-p2"><em>About</em><p>AI-powered SaaS for marketing automation, multimodal content creation &amp; storyboard generation via Gemini and Veo. Cut server-side video costs by 100% using FFmpeg WebAssembly.</p></div>
+          <div class="fp-paper fp-p1"><img src="CampaignOS.png" alt="CampaignOS preview" loading="lazy" /></div>
+          <div class="fp-front">
+            <span class="fp-cat">AI / GenAI</span>
+            <div class="fp-title-row"><h3>CampaignOS</h3><a class="fp-arrow" href="https://campaignos1.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Open CampaignOS"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+            <div class="fp-chips fp-chips-front"><span>React</span><span>TypeScript</span><span>Gemini</span></div>
           </div>
         </div>
+        <div class="fp-detail" hidden data-bg="#050f2a" data-light="0">
+          <span class="fpd-cat">AI / GenAI</span>
+          <h3 class="fpd-title">CampaignOS</h3>
+          <p class="fpd-sub">AI Video Creation Operating System</p>
+          <div class="fpd-shots"><img src="CampaignOS.png" alt="CampaignOS screenshot" loading="lazy" /></div>
+          <p class="fpd-desc">AI-powered SaaS for marketing automation, multimodal content creation &amp; storyboard generation via Gemini and Veo. Cut server-side video costs by 100% using FFmpeg WebAssembly.</p>
+          <div class="fpd-chips"><span>React</span><span>TypeScript</span><span>Gemini</span><span>Veo</span><span>Vite</span></div>
+          <div class="fpd-links"><a href="https://campaignos1.netlify.app" target="_blank" rel="noopener noreferrer">Live preview <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a><a href="https://github.com/jatinchoudhary07/CampaignOS" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+        </div>
+        <div class="fp-meta"><span class="fp-sub">AI Video Creation Operating System</span><div class="fp-links"><a href="https://campaignos1.netlify.app" target="_blank" rel="noopener noreferrer">Live preview <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a><a href="https://github.com/jatinchoudhary07/CampaignOS" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div></div>
       </article>
-
-      <article class="psc" data-cat="AI / GenAI" data-catshort="AI" data-idx="02">
-        <div class="psc-inner">
-          <div class="psc-left">
-            <div class="psc-meta-row">
-              <span class="psc-num">02</span>
-              <span class="psc-cat-badge">AI / GenAI</span>
-            </div>
-            <h3 class="psc-title">AI Document Intelligence</h3>
-            <p class="psc-subtitle">Resume &amp; Document Intelligence Platform</p>
-            <p class="psc-desc">Document intelligence with semantic search, vector search, RAG &amp; OCR achieving 95%
-              retrieval accuracy. Reduced resume screening time by 70% across enterprise evaluation pipelines.</p>
-            <div class="psc-tech"><span>Python</span><span>OCR</span><span>LLMs</span><span>NLP</span><span>RAG</span>
-            </div>
-            <div class="psc-links">
-              <a href="https://github.com/jatinchoudhary07/Smart-Document-QA---Agentic-Research-Platform"
-                target="_blank" rel="noopener noreferrer" class="psc-gh-link">View on GitHub &rarr;</a>
-            </div>
-          </div>
-          <div class="psc-right psc-img-right psc-right-qa">
-            <img src="AI_Document_Intelligence.png" alt="AI Document Intelligence Interface"
-              class="psc-img psc-img-desktop" />
-            <div class="psc-bg-num">02</div>
+      <article class="fp-card" data-aos="fade-up" style="--delay:0.08s">
+        <div class="fp-folder" tabindex="0">
+          <div class="fp-back"></div>
+          <div class="fp-paper fp-p4"><em>Highlight</em><strong>95%</strong><p>retrieval accuracy</p></div>
+          <div class="fp-paper fp-p3"><em>Tech stack</em><div class="fp-chips"><span>Python</span><span>OCR</span><span>LLMs</span><span>NLP</span><span>RAG</span></div></div>
+          <div class="fp-paper fp-p2"><em>About</em><p>Semantic search, vector search, RAG &amp; OCR achieving 95% retrieval accuracy. Reduced resume screening time by 70%.</p></div>
+          <div class="fp-paper fp-p1"><img src="AI_Document_Intelligence.png" alt="AI Document Intelligence preview" loading="lazy" /></div>
+          <div class="fp-front">
+            <span class="fp-cat">AI / GenAI</span>
+            <div class="fp-title-row"><h3>AI Document Intelligence</h3><a class="fp-arrow" href="https://github.com/jatinchoudhary07/Smart-Document-QA---Agentic-Research-Platform" target="_blank" rel="noopener noreferrer" aria-label="Open AI Document Intelligence"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+            <div class="fp-chips fp-chips-front"><span>Python</span><span>OCR</span><span>LLMs</span></div>
           </div>
         </div>
+        <div class="fp-detail" hidden data-bg="#030711" data-light="0">
+          <span class="fpd-cat">AI / GenAI</span>
+          <h3 class="fpd-title">AI Document Intelligence</h3>
+          <p class="fpd-sub">Resume &amp; Document Intelligence Platform</p>
+          <div class="fpd-shots"><img src="AI_Document_Intelligence.png" alt="AI Document Intelligence screenshot" loading="lazy" /></div>
+          <p class="fpd-desc">Semantic search, vector search, RAG &amp; OCR achieving 95% retrieval accuracy. Reduced resume screening time by 70%.</p>
+          <div class="fpd-chips"><span>Python</span><span>OCR</span><span>LLMs</span><span>NLP</span><span>RAG</span></div>
+          <div class="fpd-links"><a href="https://github.com/jatinchoudhary07/Smart-Document-QA---Agentic-Research-Platform" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+        </div>
+        <div class="fp-meta"><span class="fp-sub">Resume &amp; Document Intelligence Platform</span><div class="fp-links"><a href="https://github.com/jatinchoudhary07/Smart-Document-QA---Agentic-Research-Platform" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div></div>
       </article>
-
-      <article class="psc" data-cat="Full-Stack" data-catshort="Full Stack" data-idx="03">
-        <div class="psc-inner">
-          <div class="psc-left">
-            <div class="psc-meta-row">
-              <span class="psc-num">03</span>
-              <span class="psc-cat-badge">Full-Stack</span>
-            </div>
-            <h3 class="psc-title">Shori &ndash; Jewellery ERP</h3>
-            <p class="psc-subtitle">Enterprise E-Commerce Operating System</p>
-            <p class="psc-desc">9-module Django REST backend with 50+ JWT-secured endpoints. Next.js dashboard with
-              Excel processing (1,000+ records), real-time analytics &amp; Celery async queues.</p>
-            <div class="psc-tech"><span>Django</span><span>Next.js</span><span>PostgreSQL</span><span>Redis</span><span>JWT</span></div>
-            <div class="psc-links">
-              <span class="psc-private-badge">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-                Private Enterprise Repository
-              </span>
-            </div>
-          </div>
-          <div class="psc-right psc-img-right psc-right-shori">
-            <img src="Shori.jpg" alt="Shori Jewellery ERP Dashboard" class="psc-img psc-img-desktop" />
-            <div class="psc-bg-num">03</div>
+      <article class="fp-card" data-aos="fade-up" style="--delay:0.16s">
+        <div class="fp-folder" tabindex="0">
+          <div class="fp-back"></div>
+          <div class="fp-paper fp-p4"><em>Highlight</em><strong>50+</strong><p>JWT-secured API endpoints</p></div>
+          <div class="fp-paper fp-p3"><em>Tech stack</em><div class="fp-chips"><span>Django</span><span>Next.js</span><span>PostgreSQL</span><span>Redis</span><span>JWT</span></div></div>
+          <div class="fp-paper fp-p2"><em>About</em><p>9-module Django REST backend with 50+ JWT-secured endpoints. Next.js dashboard with Excel processing (1,000+ records), real-time analytics &amp; Celery async queues.</p></div>
+          <div class="fp-paper fp-p1"><img src="Shori.jpg" alt="Shori – Jewellery ERP preview" loading="lazy" /></div>
+          <div class="fp-front">
+            <span class="fp-cat">Full-Stack</span>
+            <div class="fp-title-row"><h3>Shori – Jewellery ERP</h3><span class="fp-arrow fp-lock" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+            <div class="fp-chips fp-chips-front"><span>Django</span><span>Next.js</span><span>PostgreSQL</span></div>
           </div>
         </div>
+        <div class="fp-detail" hidden data-bg="#0b1018" data-light="0">
+          <span class="fpd-cat">Full-Stack</span>
+          <h3 class="fpd-title">Shori – Jewellery ERP</h3>
+          <p class="fpd-sub">Enterprise E-Commerce Operating System</p>
+          <div class="fpd-shots"><img src="Shori.jpg" alt="Shori – Jewellery ERP screenshot" loading="lazy" /></div>
+          <p class="fpd-desc">9-module Django REST backend with 50+ JWT-secured endpoints. Next.js dashboard with Excel processing (1,000+ records), real-time analytics &amp; Celery async queues.</p>
+          <div class="fpd-chips"><span>Django</span><span>Next.js</span><span>PostgreSQL</span><span>Redis</span><span>JWT</span></div>
+          <div class="fpd-links"><span class="fp-private">Private Enterprise Repository</span></div>
+        </div>
+        <div class="fp-meta"><span class="fp-sub">Enterprise E-Commerce Operating System</span><div class="fp-links"><span class="fp-private">Private Enterprise Repository</span></div></div>
       </article>
-
-      <article class="psc" data-cat="Full-Stack" data-catshort="Full Stack" data-idx="04">
-        <div class="psc-inner">
-          <div class="psc-left">
-            <div class="psc-meta-row">
-              <span class="psc-num">04</span>
-              <span class="psc-cat-badge">Full-Stack</span>
-            </div>
-            <h3 class="psc-title">BridgeWorks</h3>
-            <p class="psc-subtitle">Unified Enterprise ERP &amp; Workforce OS</p>
-            <p class="psc-desc">All-in-one unified enterprise platform combining double-entry financial accounting,
-              real-time GST compliance, geofenced HR operations, and predictive logistics reconciliation into a single
-              reactive web suite.</p>
-            <div class="psc-tech">
-              <span>React</span><span>Vite</span><span>Django</span><span>Python</span><span>Material
-                UI</span><span>WebSockets</span><span>Recharts</span>
-            </div>
-            <div class="psc-links">
-              <a href="https://bridgeworks001.netlify.app" target="_blank" rel="noopener noreferrer"
-                class="psc-preview-btn">
-                <span>Live Preview</span>
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 12L12 4M12 4H6M12 4V10" />
-                </svg>
-              </a>
-              <a href="https://github.com/jatinchoudhary07/Bridgeworks" target="_blank" rel="noopener noreferrer"
-                class="psc-gh-link">View on GitHub &rarr;</a>
-            </div>
-          </div>
-          <div class="psc-right psc-img-right psc-right-bridgeworks">
-            <img src="BridgeWorks.png" alt="BridgeWorks Enterprise Dashboard" class="psc-img psc-img-desktop" />
-            <div class="psc-bg-num">04</div>
+      <article class="fp-card" data-aos="fade-up" style="--delay:0.24s">
+        <div class="fp-folder" tabindex="0">
+          <div class="fp-back"></div>
+          <div class="fp-paper fp-p4"><em>Highlight</em><strong>1</strong><p>suite: GST, HR &amp; logistics</p></div>
+          <div class="fp-paper fp-p3"><em>Tech stack</em><div class="fp-chips"><span>React</span><span>Vite</span><span>Django</span><span>WebSockets</span><span>Recharts</span></div></div>
+          <div class="fp-paper fp-p2"><em>About</em><p>Double-entry accounting, real-time GST compliance, geofenced HR operations and predictive logistics reconciliation in one reactive web suite.</p></div>
+          <div class="fp-paper fp-p1"><img src="BridgeWorks.png" alt="BridgeWorks preview" loading="lazy" /></div>
+          <div class="fp-front">
+            <span class="fp-cat">Full-Stack</span>
+            <div class="fp-title-row"><h3>BridgeWorks</h3><a class="fp-arrow" href="https://bridgeworks001.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Open BridgeWorks"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+            <div class="fp-chips fp-chips-front"><span>React</span><span>Vite</span><span>Django</span></div>
           </div>
         </div>
+        <div class="fp-detail" hidden data-bg="linear-gradient(135deg,#0b1329,#131d38 50%,#1e293b)" data-light="0">
+          <span class="fpd-cat">Full-Stack</span>
+          <h3 class="fpd-title">BridgeWorks</h3>
+          <p class="fpd-sub">Unified Enterprise ERP &amp; Workforce OS</p>
+          <div class="fpd-shots"><img src="BridgeWorks.png" alt="BridgeWorks screenshot" loading="lazy" /></div>
+          <p class="fpd-desc">Double-entry accounting, real-time GST compliance, geofenced HR operations and predictive logistics reconciliation in one reactive web suite.</p>
+          <div class="fpd-chips"><span>React</span><span>Vite</span><span>Django</span><span>WebSockets</span><span>Recharts</span></div>
+          <div class="fpd-links"><a href="https://bridgeworks001.netlify.app" target="_blank" rel="noopener noreferrer">Live preview <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a><a href="https://github.com/jatinchoudhary07/Bridgeworks" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+        </div>
+        <div class="fp-meta"><span class="fp-sub">Unified Enterprise ERP &amp; Workforce OS</span><div class="fp-links"><a href="https://bridgeworks001.netlify.app" target="_blank" rel="noopener noreferrer">Live preview <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a><a href="https://github.com/jatinchoudhary07/Bridgeworks" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div></div>
       </article>
-
-      <article class="psc" data-cat="Full-Stack" data-catshort="Full Stack" data-idx="05">
-        <div class="psc-inner">
-          <div class="psc-left">
-            <div class="psc-meta-row">
-              <span class="psc-num">05</span>
-              <span class="psc-cat-badge">Full-Stack</span>
-            </div>
-            <h3 class="psc-title">Nomster POS System</h3>
-            <p class="psc-subtitle">Real-Time Restaurant Management &amp; Multi-Tenant POS Platform</p>
-            <p class="psc-desc">High-performance, multi-tenant POS platform featuring real-time WebSocket state
-              synchronization, QR scan-to-order table sessions, automated staff attendance &amp; contract management,
-              and multi-currency i18n menu management with sub-50ms latency.</p>
-            <div class="psc-tech"><span>FastAPI</span><span>React</span><span>Redis
-                Pub/Sub</span><span>WebSockets</span><span>SQLModel</span><span>PostgreSQL</span><span>Tailwind
-                CSS</span><span>JWT Auth</span></div>
-            <div class="psc-links">
-              <span class="psc-private-badge">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-                Private Commercial Repository
-              </span>
-            </div>
-          </div>
-          <div class="psc-right psc-img-right psc-right-nomster">
-            <img src="Nomster.png" alt="Nomster POS System Interface" class="psc-img psc-img-desktop" />
-            <div class="psc-bg-num psc-bg-num-dark">05</div>
+      <article class="fp-card" data-aos="fade-up" style="--delay:0.00s">
+        <div class="fp-folder" tabindex="0">
+          <div class="fp-back"></div>
+          <div class="fp-paper fp-p4"><em>Highlight</em><strong><50ms</strong><p>real-time sync latency</p></div>
+          <div class="fp-paper fp-p3"><em>Tech stack</em><div class="fp-chips"><span>FastAPI</span><span>React</span><span>Redis Pub/Sub</span><span>PostgreSQL</span><span>JWT Auth</span></div></div>
+          <div class="fp-paper fp-p2"><em>About</em><p>Multi-tenant POS with real-time WebSocket sync, QR scan-to-order table sessions, staff attendance &amp; multi-currency i18n menus at sub-50ms latency.</p></div>
+          <div class="fp-paper fp-p1"><img src="Nomster.png" alt="Nomster POS System preview" loading="lazy" /></div>
+          <div class="fp-front">
+            <span class="fp-cat">Full-Stack</span>
+            <div class="fp-title-row"><h3>Nomster POS System</h3><span class="fp-arrow fp-lock" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+            <div class="fp-chips fp-chips-front"><span>FastAPI</span><span>React</span><span>Redis Pub/Sub</span></div>
           </div>
         </div>
+        <div class="fp-detail" hidden data-bg="#ffffff" data-light="1">
+          <span class="fpd-cat">Full-Stack</span>
+          <h3 class="fpd-title">Nomster POS System</h3>
+          <p class="fpd-sub">Real-Time Restaurant &amp; Multi-Tenant POS</p>
+          <div class="fpd-shots"><img src="Nomster.png" alt="Nomster POS System screenshot" loading="lazy" /></div>
+          <p class="fpd-desc">Multi-tenant POS with real-time WebSocket sync, QR scan-to-order table sessions, staff attendance &amp; multi-currency i18n menus at sub-50ms latency.</p>
+          <div class="fpd-chips"><span>FastAPI</span><span>React</span><span>Redis Pub/Sub</span><span>PostgreSQL</span><span>JWT Auth</span></div>
+          <div class="fpd-links"><span class="fp-private">Private Commercial Repository</span></div>
+        </div>
+        <div class="fp-meta"><span class="fp-sub">Real-Time Restaurant &amp; Multi-Tenant POS</span><div class="fp-links"><span class="fp-private">Private Commercial Repository</span></div></div>
       </article>
-
-      <article class="psc" data-cat="Machine Learning" data-catshort="ML" data-idx="06">
-        <div class="psc-inner">
-          <div class="psc-left">
-            <div class="psc-meta-row">
-              <span class="psc-num">06</span>
-              <span class="psc-cat-badge">Machine Learning</span>
-            </div>
-            <h3 class="psc-title">Federated Learning Healthcare</h3>
-            <p class="psc-subtitle">Privacy-Preserving Distributed ML</p>
-            <p class="psc-desc">Distributed ML framework with federated optimization across 5 hospital nodes without raw
-              data sharing. 94% classification accuracy with zero patient data leakage.</p>
-            <div class="psc-tech"><span>Python</span><span>TensorFlow</span><span>Federated Learning</span></div>
-            <div class="psc-links">
-              <a href="https://github.com/jatinchoudhary07/Federated-Learning-for-healthcare" target="_blank"
-                rel="noopener noreferrer" class="psc-gh-link">View on GitHub &rarr;</a>
-            </div>
-          </div>
-          <div class="psc-right psc-img-right psc-right-federated">
-            <img src="Federated_Learning.jpg" alt="Federated Learning Healthcare Dashboard"
-              class="psc-img psc-img-desktop" />
-            <div class="psc-bg-num">06</div>
+      <article class="fp-card" data-aos="fade-up" style="--delay:0.08s">
+        <div class="fp-folder" tabindex="0">
+          <div class="fp-back"></div>
+          <div class="fp-paper fp-p4"><em>Highlight</em><strong>94%</strong><p>accuracy, zero data leakage</p></div>
+          <div class="fp-paper fp-p3"><em>Tech stack</em><div class="fp-chips"><span>Python</span><span>TensorFlow</span><span>Federated Learning</span></div></div>
+          <div class="fp-paper fp-p2"><em>About</em><p>Federated optimization across 5 hospital nodes without raw data sharing. 94% classification accuracy with zero patient data leakage.</p></div>
+          <div class="fp-paper fp-p1"><img src="Federated_Learning.jpg" alt="Federated Learning Healthcare preview" loading="lazy" /></div>
+          <div class="fp-front">
+            <span class="fp-cat">Machine Learning</span>
+            <div class="fp-title-row"><h3>Federated Learning Healthcare</h3><a class="fp-arrow" href="https://github.com/jatinchoudhary07/Federated-Learning-for-healthcare" target="_blank" rel="noopener noreferrer" aria-label="Open Federated Learning Healthcare"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+            <div class="fp-chips fp-chips-front"><span>Python</span><span>TensorFlow</span><span>Federated Learning</span></div>
           </div>
         </div>
+        <div class="fp-detail" hidden data-bg="#0a1c24" data-light="0">
+          <span class="fpd-cat">Machine Learning</span>
+          <h3 class="fpd-title">Federated Learning Healthcare</h3>
+          <p class="fpd-sub">Privacy-Preserving Distributed ML</p>
+          <div class="fpd-shots"><img src="Federated_Learning.jpg" alt="Federated Learning Healthcare screenshot" loading="lazy" /></div>
+          <p class="fpd-desc">Federated optimization across 5 hospital nodes without raw data sharing. 94% classification accuracy with zero patient data leakage.</p>
+          <div class="fpd-chips"><span>Python</span><span>TensorFlow</span><span>Federated Learning</span></div>
+          <div class="fpd-links"><a href="https://github.com/jatinchoudhary07/Federated-Learning-for-healthcare" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+        </div>
+        <div class="fp-meta"><span class="fp-sub">Privacy-Preserving Distributed ML</span><div class="fp-links"><a href="https://github.com/jatinchoudhary07/Federated-Learning-for-healthcare" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div></div>
       </article>
-
-      <article class="psc" data-cat="Mobile" data-catshort="Mobile" data-idx="07">
-        <div class="psc-inner">
-          <div class="psc-left">
-            <div class="psc-meta-row">
-              <span class="psc-num">07</span>
-              <span class="psc-cat-badge">Mobile</span>
-            </div>
-            <h3 class="psc-title">JKLU Eezy</h3>
-            <p class="psc-subtitle">Smart Campus Super-App</p>
-            <p class="psc-desc">Cross-platform app unifying 6 campus services with REST APIs, RBAC &amp; offline sync
-              for 1,000+ active users. JWT auth gateway, PDF rendering &amp; 40+ interactive screens.</p>
-            <div class="psc-tech"><span>Flutter</span><span>Dart</span><span>REST APIs</span><span>JWT</span></div>
-            <div class="psc-links">
-              <a href="https://jatinchoudhary07.github.io/JKLUEesy_frontend/" target="_blank" rel="noopener noreferrer"
-                class="psc-preview-btn">
-                <span>Live Preview</span>
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 12L12 4M12 4H6M12 4V10" />
-                </svg>
-              </a>
-              <a href="https://github.com/jatinchoudhary07/jklu_eezy" target="_blank" rel="noopener noreferrer"
-                class="psc-gh-link">View on GitHub &rarr;</a>
-            </div>
-          </div>
-          <div class="psc-right psc-img-right psc-right-jklu">
-            <div class="psc-triple-mobile">
-              <img src="JKLUeezy1.png" alt="JKLU Eezy Home Screen" class="psc-mob-img psc-mob-1" />
-              <img src="jklueezy2.png" alt="JKLU Eezy Dashboard Screen" class="psc-mob-img psc-mob-2" />
-              <img src="jklueezy3.png" alt="JKLU Eezy Feature Screen" class="psc-mob-img psc-mob-3" />
-            </div>
-            <div class="psc-bg-num">07</div>
+      <article class="fp-card" data-aos="fade-up" style="--delay:0.16s">
+        <div class="fp-folder" tabindex="0">
+          <div class="fp-back"></div>
+          <div class="fp-paper fp-p4"><em>Highlight</em><strong>1,000+</strong><p>active campus users</p></div>
+          <div class="fp-paper fp-p3"><em>Tech stack</em><div class="fp-chips"><span>Flutter</span><span>Dart</span><span>REST APIs</span><span>JWT</span></div></div>
+          <div class="fp-paper fp-p2"><em>About</em><p>Cross-platform app unifying 6 campus services with REST APIs, RBAC &amp; offline sync for 1,000+ active users. 40+ interactive screens.</p></div>
+          <div class="fp-paper fp-p1"><img src="JKLUeezy1.png" alt="JKLU Eezy preview" loading="lazy" /></div>
+          <div class="fp-front">
+            <span class="fp-cat">Flutter App</span>
+            <div class="fp-title-row"><h3>JKLU Eezy</h3><a class="fp-arrow" href="https://jatinchoudhary07.github.io/JKLUEesy_frontend/" target="_blank" rel="noopener noreferrer" aria-label="Open JKLU Eezy"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+            <div class="fp-chips fp-chips-front"><span>Flutter</span><span>Dart</span><span>REST APIs</span></div>
           </div>
         </div>
+        <div class="fp-detail" hidden data-bg="linear-gradient(135deg,#071712,#0e2d23 50%,#154435)" data-light="0">
+          <span class="fpd-cat">Flutter App</span>
+          <h3 class="fpd-title">JKLU Eezy</h3>
+          <p class="fpd-sub">Smart Campus Super-App</p>
+          <div class="fpd-shots"><img src="JKLUeezy1.png" alt="JKLU Eezy screenshot" loading="lazy" /><img src="jklueezy2.png" alt="JKLU Eezy screenshot" loading="lazy" /><img src="jklueezy3.png" alt="JKLU Eezy screenshot" loading="lazy" /></div>
+          <p class="fpd-desc">Cross-platform app unifying 6 campus services with REST APIs, RBAC &amp; offline sync for 1,000+ active users. 40+ interactive screens.</p>
+          <div class="fpd-chips"><span>Flutter</span><span>Dart</span><span>REST APIs</span><span>JWT</span></div>
+          <div class="fpd-links"><a href="https://jatinchoudhary07.github.io/JKLUEesy_frontend/" target="_blank" rel="noopener noreferrer">Live preview <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a><a href="https://github.com/jatinchoudhary07/jklu_eezy" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div>
+        </div>
+        <div class="fp-meta"><span class="fp-sub">Smart Campus Super-App</span><div class="fp-links"><a href="https://jatinchoudhary07.github.io/JKLUEesy_frontend/" target="_blank" rel="noopener noreferrer">Live preview <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a><a href="https://github.com/jatinchoudhary07/jklu_eezy" target="_blank" rel="noopener noreferrer">GitHub <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></a></div></div>
       </article>
-
-    </div>
-
-    <!-- Mobile carousel dots & swipe hint (hidden on desktop via CSS) -->
-    <div class="mob-carousel-footer" id="mobCarouselFooter" aria-hidden="true">
-      <div class="mob-carousel-dots" id="mobCarouselDots"></div>
-      <p class="mob-swipe-hint" id="mobSwipeHint">swipe to explore</p>
     </div>
   </section>
 
